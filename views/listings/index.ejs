@@ -37,13 +37,20 @@
   display: flex;
   align-items: center;
 }
+.img {
+  width: 100%;        /* full width */
+  height: 300px;      /* must define height */
+  overflow: hidden;   /* hide anything that overflows */
+}
+
 .img img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover;
+  width: 100%;
+  height: 100%;       /* now it has a real height to fill */
+  object-fit: cover;  /* crop and scale nicely */
+  display: block;     /* removes tiny bottom gap under img */
 }
   </style>
-    <!-- <h3>All listings</h3> -->
+    <!-- <h3>All listings</h3> -->s
      <div id="filters">
       <div class="filter">
         <i class="fa-solid fa-fire"></i>
