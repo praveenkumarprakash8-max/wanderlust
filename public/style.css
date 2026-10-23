@@ -226,3 +226,58 @@ body:has(form[action="/signup"]) form[action="/signup"] .btn-success:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 12px rgba(18, 55, 42, 0.2);
 }
+
+/* Emerald Green Premium - Login Form */
+
+body:has(form[action="/login"]) form[action="/login"] {
+  background: #ffffff;
+  padding: 30px;
+  border: 1px solid #e1e9e3;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(18, 55, 42, 0.1);
+}
+
+body:has(form[action="/login"]) h1 {
+  color: #12372a;
+  font-weight: 700;
+  text-align: center;
+}
+
+body:has(form[action="/login"]) form[action="/login"] .form-label {
+  color: #263b30;
+  font-weight: 600;
+}
+
+body:has(form[action="/login"]) form[action="/login"] .form-control {
+  background-color: #fcfdfc;
+  color: #24372c;
+  border: 1px solid #dce5df;
+  border-radius: 8px;
+  padding: 11px 13px;
+  transition: all 0.25s ease;
+}
+
+body:has(form[action="/login"]) form[action="/login"] .form-control:focus {
+  background-color: #ffffff;
+  color: #24372c;
+  border-color: #32684c;
+  box-shadow: 0 0 0 3px rgba(50, 104, 76, 0.12);
+}
+
+body:has(form[action="/login"]) form[action="/login"] .btn-success {
+  background-color: #12372a;
+  color: #ffffff;
+  border: 1px solid #12372a;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+body:has(form[action="/login"]) form[action="/login"] .btn-success:hover {
+  background-color: #1b513c;
+  border-color: #1b513c;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(18, 55, 42, 0.2);
+}
