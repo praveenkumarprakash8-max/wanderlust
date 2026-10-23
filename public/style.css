@@ -109,3 +109,64 @@ f.f-info-links a:hover {
   padding-left: 0;
   padding-right: 0;
 }
+
+/* Premium styling for Create Listing form */
+
+.listing-page {
+  background-color: #f3f5f4;
+  min-height: 100vh;
+}
+
+.listing-page .col-8 {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(18, 55, 42, 0.08);
+}
+
+.listing-page h3 {
+  color: #12372a;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.listing-page .form-label {
+  color: #263b30;
+  font-weight: 600;
+}
+
+.listing-page .form-control {
+  border: 1px solid #dce5df;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.listing-page .form-control:focus {
+  border-color: #32684c;
+  box-shadow: 0 0 0 3px rgba(50, 104, 76, 0.12);
+}
+
+.listing-page .add-btn {
+  background-color: #12372a;
+  color: #ffffff;
+  border: 1px solid #12372a;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.listing-page .add-btn:hover {
+  background-color: #1b513c;
+  border-color: #1b513c;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(18, 55, 42, 0.2);
+}
+
+@media (max-width: 768px) {
+  .listing-page .col-8 {
+    width: 100%;
+    padding: 20px;
+  }
+}
