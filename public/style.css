@@ -173,9 +173,7 @@ f.f-info-links a:hover {
 
 /* Midnight Luxury Signup Form */
 
-body:has(form[action="/signup"]) {
-  background-color: #151923;
-}
+/* Midnight Luxury - Signup Form Only */
 
 body:has(form[action="/signup"]) form[action="/signup"] {
   background: #202633;
@@ -191,12 +189,12 @@ body:has(form[action="/signup"]) h1 {
   text-align: center;
 }
 
-body:has(form[action="/signup"]) .form-label {
+body:has(form[action="/signup"]) form[action="/signup"] .form-label {
   color: #f1f1f1;
   font-weight: 500;
 }
 
-body:has(form[action="/signup"]) .form-control {
+body:has(form[action="/signup"]) form[action="/signup"] .form-control {
   background-color: #151923;
   color: #ffffff;
   border: 1px solid #41495a;
@@ -204,18 +202,14 @@ body:has(form[action="/signup"]) .form-control {
   padding: 11px 13px;
 }
 
-body:has(form[action="/signup"]) .form-control:focus {
+body:has(form[action="/signup"]) form[action="/signup"] .form-control:focus {
   background-color: #151923;
   color: #ffffff;
   border-color: #c5a568;
   box-shadow: 0 0 0 3px rgba(197, 165, 104, 0.15);
 }
 
-body:has(form[action="/signup"]) .form-control::placeholder {
-  color: #929bac;
-}
-
-body:has(form[action="/signup"]) .btn-success {
+body:has(form[action="/signup"]) form[action="/signup"] .btn-success {
   background-color: #c5a568;
   color: #151923;
   border: 1px solid #c5a568;
@@ -225,7 +219,7 @@ body:has(form[action="/signup"]) .btn-success {
   transition: 0.3s ease;
 }
 
-body:has(form[action="/signup"]) .btn-success:hover {
+body:has(form[action="/signup"]) form[action="/signup"] .btn-success:hover {
   background-color: #d4af72;
   border-color: #d4af72;
   color: #151923;
