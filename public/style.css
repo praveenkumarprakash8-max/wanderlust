@@ -170,3 +170,64 @@ f.f-info-links a:hover {
     padding: 20px;
   }
 }
+
+/* Midnight Luxury Signup Form */
+
+body:has(form[action="/signup"]) {
+  background-color: #151923;
+}
+
+body:has(form[action="/signup"]) form[action="/signup"] {
+  background: #202633;
+  padding: 30px;
+  border: 1px solid #41495a;
+  border-radius: 16px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+body:has(form[action="/signup"]) h1 {
+  color: #d4af72;
+  font-weight: 700;
+  text-align: center;
+}
+
+body:has(form[action="/signup"]) .form-label {
+  color: #f1f1f1;
+  font-weight: 500;
+}
+
+body:has(form[action="/signup"]) .form-control {
+  background-color: #151923;
+  color: #ffffff;
+  border: 1px solid #41495a;
+  border-radius: 8px;
+  padding: 11px 13px;
+}
+
+body:has(form[action="/signup"]) .form-control:focus {
+  background-color: #151923;
+  color: #ffffff;
+  border-color: #c5a568;
+  box-shadow: 0 0 0 3px rgba(197, 165, 104, 0.15);
+}
+
+body:has(form[action="/signup"]) .form-control::placeholder {
+  color: #929bac;
+}
+
+body:has(form[action="/signup"]) .btn-success {
+  background-color: #c5a568;
+  color: #151923;
+  border: 1px solid #c5a568;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+body:has(form[action="/signup"]) .btn-success:hover {
+  background-color: #d4af72;
+  border-color: #d4af72;
+  color: #151923;
+  transform: translateY(-2px);
+}
