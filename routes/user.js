@@ -23,6 +23,23 @@ router
     userController.login,
   );
 
+// NEW: Google OAuth
+router.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] }),
+);
+
+// NEW: Google callback
+router.get(
+  "/auth/google/callback",
+  saveRedirectUrl,
+  passport.authenticate("google", {
+    failureRedirect: "/login",
+    failureFlash: true,
+  }),
+  userController.login,
+);
+
 router.get("/logout", userController.logout);
 
 module.exports = router;

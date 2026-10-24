@@ -19,6 +19,7 @@ const MongoStore = require("connect-mongo").default;
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("./models/user.js");
 
 const dbUrl = process.env.ATLASDB_URL;
@@ -71,6 +72,45 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL:
+        process.env.GOOGLE_CALLBACK_URL ||
+        "http://localhost:8080/auth/google/callback",
+    },
+    async (accessToken, refreshToken, profile, done) => {
+      try {
+        let user = await User.findOne({ googleId: profile.id });
+        if (user) return done(null, user);
+
+        const email = profile.emails && profile.emails[0]?.value;
+        const verified = profile._json && profile._json.email_verified;
+
+        if (!email || !verified) {
+          return done(null, false, {
+            message: "Your Google email is not verified.",
+          });
+        }
+
+        user = await User.findOne({ email });
+        if (user) {
+          user.googleId = profile.id;
+          await user.save();
+          return done(null, user);
+        }
+
+        user = new User({ email, username: email, googleId: profile.id });
+        await user.save();
+        return done(null, user);
+      } catch (err) {
+        return done(err);
+      }
+    },
+  ),
+);
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -86,9 +126,21 @@ app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/", userRouter);
 
-app.get("/", (req, res) => {
-  res.redirect("/listings");
+app.get("/privacy", (req, res) => {
+  res.render("privacy.ejs");
 });
+
+app.get("/", (req, res) => {
+  if (req.isAuthenticated()) {
+    return res.redirect("/listings");
+  }
+
+  res.render("home.ejs");
+});
+
+// app.get("/", (req, res) => {
+//   res.redirect("home.ejs");
+// });
 
 // app.get("/", (req, res) => {
 //   res.send("hi i am root.");
