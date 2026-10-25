@@ -81,6 +81,17 @@ a {
   color: white;
   background: var(--blue);
   border-radius: 10px;
+  transition:
+    background 0.25s,
+    transform 0.25s,
+    box-shadow 0.25s;
+}
+
+.navbar nav a.signup-btn:hover {
+  color: white;
+  background: var(--navy);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px #12314d33;
 }
 
 .hero {
