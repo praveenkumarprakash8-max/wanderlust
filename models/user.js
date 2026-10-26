@@ -10,10 +10,27 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+
   googleId: {
     type: String,
     unique: true,
     sparse: true,
+  },
+
+  // Email verification fields
+  isEmailVerified: {
+    type: Boolean,
+    default: false,
+  },
+
+  emailVerificationToken: {
+    type: String,
+    default: undefined,
+  },
+
+  emailVerificationExpires: {
+    type: Date,
+    default: undefined,
   },
 });
 

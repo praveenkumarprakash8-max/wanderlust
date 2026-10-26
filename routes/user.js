@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require("../models/user.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 const passport = require("passport");
-const { saveRedirectUrl } = require("../middleware.js");
+const { saveRedirectUrl, isLoggedIn } = require("../middleware.js");
 const userController = require("../controller/users.js");
 
 router
@@ -11,25 +11,49 @@ router
   .get(userController.rendersignupForm)
   .post(wrapAsync(userController.signup));
 
+// Email verification route
+router.get("/verify-email/:token", wrapAsync(userController.verifyEmail));
+
 router
   .route("/login")
   .get(userController.renderLoginForm)
-  .post(
-    saveRedirectUrl,
-    passport.authenticate("local", {
-      failureRedirect: "/login",
-      failureFlash: true,
-    }),
-    userController.login,
-  );
+  .post(saveRedirectUrl, (req, res, next) => {
+    passport.authenticate("local", (err, user, info) => {
+      if (err) {
+        return next(err);
+      }
 
-// NEW: Google OAuth
+      if (!user) {
+        req.flash("error", info?.message || "Invalid username or password.");
+        return res.redirect("/login");
+      }
+
+      if (!user.isEmailVerified) {
+        req.flash("error", "Please verify your email before logging in.");
+        return res.redirect("/login");
+      }
+
+      req.logIn(user, (err) => {
+        console.log("LOGIN ROUTE HIT");
+        console.log("USER FOUND:", !!user);
+        console.log("EMAIL VERIFIED:", user?.isEmailVerified);
+
+        if (err) {
+          return next(err);
+        }
+
+        return userController.login(req, res, next);
+      });
+    })(req, res, next);
+  });
+
+// Google OAuth
 router.get(
   "/auth/google",
   passport.authenticate("google", { scope: ["profile", "email"] }),
 );
 
-// NEW: Google callback
+// Google callback
 router.get(
   "/auth/google/callback",
   saveRedirectUrl,
@@ -39,6 +63,8 @@ router.get(
   }),
   userController.login,
 );
+
+router.get("/account", isLoggedIn, userController.renderAccount);
 
 router.get("/logout", userController.logout);
 

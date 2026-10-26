@@ -1,50 +1,150 @@
 <style>
-  .search-btn{
-    background-color: #fe424d;
+  @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&display=swap");
+
+  .main-navbar {
+    background: #ffffff;
+    box-shadow: 0 2px 16px rgba(16, 24, 40, 0.06);
+    padding: 0.6rem 0;
+  }
+
+  /* Wanderlust brand (same as home page) */
+  .brand-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: -1px;
+    color: #12314d;
+    text-decoration: none;
+  }
+
+  .brand-wrap:hover {
+    color: #12314d;
+  }
+
+  .brand-logo {
+    background: #1769aa;
     color: #fff;
+    width: 39px;
+    height: 39px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    letter-spacing: 0;
+  }
+
+  /* Search button (outline style) */
+  .search-btn {
+    background-color: #ffffff;
+    color: #1769aa;
+    border: 1px solid #1769aa;
     border-radius: 25px;
     padding: 0 1rem 0 1rem;
+    transition: all 0.25s;
   }
-      .search-btn:hover{
-       background-color: #fe424d;
+
+  .search-btn:hover {
+    background-color: #1769aa;
+    color: #ffffff;
+    border-color: #1769aa;
+  }
+
+  .search-btn i {
+    display: inline;
+    margin-right: 0.5rem;
+  }
+
+  .search-inp {
+    border-radius: 25px;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    font-size: 1rem;
+  }
+
+  /* Add listing button */
+  .add-listing-btn {
+    background-color: #1769aa;
+    color: #ffffff;
+    border: 1px solid #1769aa;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-weight: 600;
+    margin-right: 12px;
+    transition: all 0.3s ease;
+  }
+
+  .add-listing-btn:hover {
+    background-color: #12314d;
+    color: #ffffff;
+    border-color: #12314d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(18, 49, 77, 0.25);
+  }
+
+  /* Profile avatar + dropdown */
+  .profile-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid #e3e7ea;
+    background: #1769aa;
     color: #fff;
-    }
-     .search-btn i{
-      display: inline;
-      margin-right:0.5rem ;
-    }
-    .search-inp{
-        border-radius: 25px;
-        padding: 0.5rem 3rem 0.5rem 3rem;
-        font-size: 1rem;
-    }
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.2s ease;
+  }
 
-    /* Premium Deep Emerald Add Listing Button */
-.add-listing-btn {
-  background-color: #12372A;
-  color: #ffffff;
-  border: 1px solid #12372A;
-  border-radius: 8px;
-  padding: 8px 18px;
-  font-weight: 600;
-  margin-right: 12px;
-  transition: all 0.3s ease;
-}
+  .profile-btn:hover,
+  .profile-btn:focus,
+  .profile-btn.show {
+    background: #12314d;
+    color: #fff;
+    border-color: #12314d;
+    box-shadow: 0 4px 12px rgba(18, 49, 77, 0.25);
+  }
 
-.add-listing-btn:hover {
-  background-color: #1B513C;
-  color: #ffffff;
-  border-color: #1B513C;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(18, 55, 42, 0.25);
-}
+  .profile-btn::after {
+    display: none;
+  }
 
+  .profile-menu {
+    border: none;
+    border-radius: 14px;
+    padding: 8px;
+    min-width: 220px;
+    box-shadow: 0 12px 32px rgba(16, 24, 40, 0.16);
+  }
+
+  .profile-menu .dropdown-item {
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-weight: 500;
+  }
+
+  .profile-menu .dropdown-item:hover {
+    background: #f3f6f4;
+  }
+
+  .profile-menu .menu-head {
+    padding: 8px 14px 10px;
+    font-size: 0.8rem;
+    color: #6b7280;
+    word-break: break-all;
+  }
 </style>
 
-
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top main-navbar">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/"><i class="fa-regular fa-compass"></i></a>
+    <a class="brand-wrap" href="/">
+      <span class="brand-logo">W</span>
+      <span>Wanderlust</span>
+    </a>
     <button
       class="navbar-toggler"
       type="button"
@@ -57,29 +157,54 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" href="/listings">Explore</a>
+      <div class="navbar-nav ms-auto">
+        <form class="d-flex" role="search">
+          <input
+            class="form-control me-2 search-inp"
+            type="search"
+            placeholder="Search destination"
+          />
+          <button class="btn search-btn" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>Search
+          </button>
+        </form>
       </div>
 
- <div class="navbar-nav ms-auto">
-    <form class="d-flex" role="search">
-      <input class="form-control me-2 search-inp" type="search" placeholder="Search destination"/>
-      <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
-    </form>
-  </div>
+      <div class="navbar-nav ms-auto align-items-md-center">
+        <a class="btn add-listing-btn" href="/listings/new">Add listing</a>
 
-      <div class="navbar-nav ms-auto">
-           <a class="btn add-listing-btn" href="/listings/new">Add listing</a>
-        <% if (!currUser) {%>
+        <% if (!currUser) { %>
         <a class="nav-link" href="/signup"><b>Sign up</b></a>
         <a class="nav-link" href="/login"><b>Log in</b></a>
-        <%}%>
-      
-         <% if (currUser) {%>
-        <a class="nav-link" href="/logout"><b>Log out</b></a>
-        <%}%>
-
-
+        <% } %> <% if (currUser) { %>
+        <div class="dropdown">
+          <button
+            class="btn profile-btn dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            aria-label="Profile menu"
+          >
+            <%= currUser.username.charAt(0).toUpperCase() %>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end profile-menu">
+            <li class="menu-head">
+              Signed in as<br /><b><%= currUser.email %></b>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" href="/account">
+                <i class="fa-regular fa-user me-2"></i>My Account
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/logout">
+                <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Log out
+              </a>
+            </li>
+          </ul>
+        </div>
+        <% } %>
       </div>
     </div>
   </div>
