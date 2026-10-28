@@ -22,12 +22,19 @@ body {
   font-family: "DM Sans", sans-serif;
   background: var(--background);
   color: var(--navy);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 a {
   color: inherit;
   text-decoration: none;
 }
+
+/* =========================================
+   NAVBAR
+========================================= */
 
 .navbar {
   min-height: 82px;
@@ -87,6 +94,10 @@ a {
   color: white;
 }
 
+/* =========================================
+   HERO SECTION
+========================================= */
+
 .hero {
   padding: 72px 7% 82px;
   display: grid;
@@ -94,6 +105,7 @@ a {
   align-items: center;
   gap: 65px;
   max-width: 1600px;
+  width: 100%;
   margin: auto;
 }
 
@@ -252,6 +264,10 @@ h1 span {
   letter-spacing: 1.3px;
 }
 
+/* =========================================
+   DESTINATIONS
+========================================= */
+
 .destinations {
   padding: 45px 7%;
   border-top: 1px solid #e1eaf3;
@@ -289,6 +305,10 @@ h1 span {
   margin-left: 8px;
 }
 
+/* =========================================
+   BOTTOM CTA
+========================================= */
+
 .bottom-cta {
   margin: 45px 7%;
   padding: 55px 25px;
@@ -308,35 +328,104 @@ h1 span {
   color: var(--blue);
 }
 
-footer {
-  padding: 27px 7%;
+/* =========================================
+   FOOTER - MATCHES footer.ejs
+========================================= */
+
+footer:has(.f-info) {
+  width: 100%;
+  margin-top: auto;
+  padding: 0;
+  display: block;
+  background: white;
   border-top: 1px solid #e1eaf3;
+}
+
+.f-info {
+  width: 100%;
+  min-height: 100px;
+  padding: 22px 7%;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
+  text-align: center;
   background: white;
 }
 
-footer .brand {
-  font-size: 19px;
+.f-info-socials,
+.f-info-brand,
+.f-info-links {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-footer p {
-  color: var(--muted);
-  font-size: 12px;
+.f-info-socials {
+  gap: 18px;
 }
+
+.f-info-socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue);
+  font-size: 20px;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.f-info-socials i {
+  font-size: inherit;
+}
+
+.f-info-socials a:hover {
+  color: #e4bd78;
+  transform: translateY(-2px);
+}
+
+.f-info-brand {
+  color: var(--navy);
+  font-size: 13px;
+}
+
+.f-info-links {
+  gap: 20px;
+}
+
+.f-info-links a {
+  color: var(--muted);
+  font-size: 13px;
+  transition: color 0.2s ease;
+}
+
+.f-info-links a:hover {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
 
 @keyframes fadeUp {
   from {
     opacity: 0;
     transform: translateY(18px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
+/* =========================================
+   TABLET RESPONSIVE
+========================================= */
 
 @media (max-width: 900px) {
   .hero {
@@ -357,6 +446,10 @@ footer p {
     left: -18px;
   }
 }
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
 
 @media (max-width: 600px) {
   .navbar {
@@ -419,8 +512,20 @@ footer p {
     padding: 40px 20px;
   }
 
-  footer {
-    padding: 23px 5%;
-    flex-wrap: wrap;
+  .f-info {
+    padding: 20px 5%;
+    gap: 14px;
+  }
+
+  .f-info-brand {
+    font-size: 12px;
+  }
+
+  .f-info-socials a {
+    font-size: 19px;
+  }
+
+  .f-info-links {
+    gap: 18px;
   }
 }
