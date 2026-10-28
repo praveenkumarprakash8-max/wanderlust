@@ -483,24 +483,95 @@
   </div>
 </nav>
 
+
 <script>
   (() => {
     const searchToggle = document.getElementById("mobileSearchToggle");
     const searchPanel = document.getElementById("mobileSearchPanel");
+    const accountDropdown = document.querySelector(
+      ".mobile-account-dropdown"
+    );
+    const accountToggle = accountDropdown?.querySelector(
+      '[data-bs-toggle="dropdown"]'
+    );
 
+    // Close the mobile search panel
+    function closeSearch() {
+      if (!searchToggle || !searchPanel) return;
+
+      searchPanel.classList.remove("is-open");
+      searchToggle.setAttribute("aria-expanded", "false");
+      searchToggle.setAttribute("aria-label", "Open search");
+    }
+
+    // Close the My Account dropdown using Bootstrap
+    function closeAccount() {
+      if (!accountToggle || !window.bootstrap?.Dropdown) return;
+
+      const dropdown = window.bootstrap.Dropdown.getInstance(accountToggle);
+
+      if (dropdown) {
+        dropdown.hide();
+      }
+    }
+
+    // Toggle mobile search panel
     if (searchToggle && searchPanel) {
       searchToggle.addEventListener("click", () => {
-        const isOpen = searchPanel.classList.toggle("is-open");
+        const isOpen = searchPanel.classList.contains("is-open");
 
-        searchToggle.setAttribute("aria-expanded", String(isOpen));
-        searchToggle.setAttribute(
-          "aria-label",
-          isOpen ? "Close search" : "Open search"
-        );
+        // Close account dropdown before opening search
+        closeAccount();
 
         if (isOpen) {
+          closeSearch();
+        } else {
+          searchPanel.classList.add("is-open");
+          searchToggle.setAttribute("aria-expanded", "true");
+          searchToggle.setAttribute("aria-label", "Close search");
+
           const input = searchPanel.querySelector('input[type="search"]');
           if (input) input.focus();
+        }
+      });
+    }
+
+    // Close search when My Account is clicked
+    if (accountToggle) {
+      accountToggle.addEventListener("click", () => {
+        closeSearch();
+      });
+    }
+
+    // Close both when the user scrolls
+    let scrollTimeout;
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        closeSearch();
+        closeAccount();
+      },
+      { passive: true }
+    );
+
+    // Close search when tapping outside its panel
+    document.addEventListener("click", (event) => {
+      if (
+        searchPanel &&
+        searchToggle &&
+        !searchPanel.contains(event.target) &&
+        !searchToggle.contains(event.target)
+      ) {
+        closeSearch();
+      }
+    });
+
+    // Close dropdown after Bootstrap finishes hiding it
+    if (accountDropdown) {
+      accountDropdown.addEventListener("hidden.bs.dropdown", () => {
+        if (accountToggle) {
+          accountToggle.setAttribute("aria-expanded", "false");
         }
       });
     }
