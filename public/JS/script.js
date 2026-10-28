@@ -20,4 +20,22 @@
       false,
     );
   });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".auto-dismiss").forEach((alert) => {
+      const delay = alert.classList.contains("alert-danger") ? 5000 : 3000;
+
+      setTimeout(() => {
+        if (!alert.isConnected) return;
+
+        alert.classList.remove("show");
+
+        setTimeout(() => {
+          if (alert.isConnected && window.bootstrap) {
+            window.bootstrap.Alert.getOrCreateInstance(alert).close();
+          }
+        }, 400);
+      }, delay);
+    });
+  });
 })();

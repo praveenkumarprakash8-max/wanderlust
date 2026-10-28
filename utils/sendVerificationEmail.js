@@ -22,7 +22,7 @@ async function sendVerificationEmail(email, verificationUrl) {
                     padding: 12px 20px; text-decoration: none; border-radius: 6px;">
             Verify Email
           </a>
-          <p style="margin-top: 20px;">This link will expire in 15 minutes.</p>
+          <p style="margin-top: 20px;">This link will expire in 24 hours.</p>
           <p>If you did not create this account, you can ignore this email.</p>
         </div>
       `,

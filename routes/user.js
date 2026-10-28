@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/user.js");
+
 const wrapAsync = require("../utils/wrapAsync.js");
 const passport = require("passport");
 const { saveRedirectUrl, isLoggedIn } = require("../middleware.js");
@@ -11,17 +11,24 @@ router
   .get(userController.rendersignupForm)
   .post(wrapAsync(userController.signup));
 
-// Email verification route
+// Verification instructions page
+router.get("/verify-email", userController.renderVerifyEmail);
+
+// Verify the token from the email link
 router.get("/verify-email/:token", wrapAsync(userController.verifyEmail));
+
+// Resend verification email
+router.post(
+  "/resend-verification",
+  wrapAsync(userController.resendVerificationEmail),
+);
 
 router
   .route("/login")
   .get(userController.renderLoginForm)
   .post(saveRedirectUrl, (req, res, next) => {
     passport.authenticate("local", (err, user, info) => {
-      if (err) {
-        return next(err);
-      }
+      if (err) return next(err);
 
       if (!user) {
         req.flash("error", info?.message || "Invalid username or password.");
@@ -30,18 +37,11 @@ router
 
       if (!user.isEmailVerified) {
         req.flash("error", "Please verify your email before logging in.");
-        return res.redirect("/login");
+        return res.redirect("/verify-email");
       }
 
       req.logIn(user, (err) => {
-        console.log("LOGIN ROUTE HIT");
-        console.log("USER FOUND:", !!user);
-        console.log("EMAIL VERIFIED:", user?.isEmailVerified);
-
-        if (err) {
-          return next(err);
-        }
-
+        if (err) return next(err);
         return userController.login(req, res, next);
       });
     })(req, res, next);
@@ -50,10 +50,11 @@ router
 // Google OAuth
 router.get(
   "/auth/google",
-  passport.authenticate("google", { scope: ["profile", "email"] }),
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+  }),
 );
 
-// Google callback
 router.get(
   "/auth/google/callback",
   saveRedirectUrl,
