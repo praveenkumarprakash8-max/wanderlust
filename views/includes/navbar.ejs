@@ -6,7 +6,7 @@
     position: sticky;
     top: 0;
     z-index: 1030;
-    padding: 0.6rem 0;
+    padding: 0.5rem 0;
     background: #fff;
     box-shadow: 0 2px 16px rgba(16, 24, 40, 0.06);
   }
@@ -93,7 +93,7 @@
   }
 
   .main-navbar .profile-btn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 42px;
@@ -105,6 +105,7 @@
     color: #fff;
     font-size: 1rem;
     font-weight: 700;
+    flex-shrink: 0;
   }
 
   .main-navbar .profile-btn:hover,
@@ -145,11 +146,35 @@
     overflow-wrap: anywhere;
   }
 
-  /* Desktop/mobile visibility defaults */
   .main-navbar .desktop-navbar {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
+    min-height: 64px;
+    position: relative;
+  }
+
+  .main-navbar .desktop-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .main-navbar .desktop-navbar form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+  }
+
+  .main-navbar .desktop-navbar .search-inp {
+    width: 315px;
+    max-width: 25vw;
+  }
+
+  .main-navbar .desktop-navbar .search-btn {
+    min-height: 40px;
   }
 
   .main-navbar .mobile-navbar,
@@ -162,12 +187,11 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 7px;
+    gap: 8px;
     flex-shrink: 0;
   }
 
-  .main-navbar .mobile-icon-btn,
-  .main-navbar .mobile-menu-toggle {
+  .main-navbar .mobile-icon-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -180,11 +204,6 @@
     background: #fff;
     color: #1769aa;
     font-size: 17px;
-  }
-
-  .main-navbar .mobile-icon-btn:hover,
-  .main-navbar .mobile-menu-toggle:hover {
-    background: #eef6fc;
   }
 
   .main-navbar .mobile-add-btn {
@@ -231,14 +250,13 @@
     min-height: 42px;
   }
 
-  /* CRITICAL FIX: mobile menu must never show on desktop */
+  /* Desktop visibility */
   @media (min-width: 768px) {
     .main-navbar .desktop-navbar {
       display: flex !important;
     }
 
     .main-navbar .mobile-navbar,
-    .main-navbar #mobileNavMenu,
     .main-navbar .mobile-search-panel {
       display: none !important;
     }
@@ -289,35 +307,6 @@
     .main-navbar .mobile-search-panel.is-open {
       display: block;
     }
-
-    /* Mobile hamburger menu */
-    .main-navbar #mobileNavMenu {
-      width: 100%;
-      padding: 10px 2px 2px;
-    }
-
-    .main-navbar #mobileNavMenu.collapse:not(.show) {
-      display: none !important;
-    }
-
-    .main-navbar #mobileNavMenu.collapse.show {
-      display: block !important;
-    }
-
-    .main-navbar #mobileNavMenu .nav-link {
-      padding: 12px 10px;
-      border-bottom: 1px solid #edf0f3;
-      color: #12314d;
-      text-decoration: none;
-    }
-
-    .main-navbar #mobileNavMenu .profile-btn {
-      margin: 10px 0 4px 8px;
-    }
-
-    .main-navbar #mobileNavMenu .profile-menu {
-      width: 100%;
-    }
   }
 
   @media (max-width: 380px) {
@@ -342,8 +331,7 @@
     }
 
     .main-navbar .mobile-icon-btn,
-    .main-navbar .mobile-menu-toggle {
-      flex-basis: 36px;
+    .main-navbar .mobile-navbar .profile-btn {
       width: 36px;
       height: 36px;
     }
@@ -364,20 +352,20 @@
   }
 </style>
 
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top main-navbar">
+<nav class="navbar bg-white border-bottom main-navbar">
   <div class="container-fluid">
 
-    <!-- Desktop navbar -->
+    <!-- Desktop navbar: unchanged -->
     <div class="desktop-navbar">
       <a class="brand-wrap" href="/">
         <span class="brand-logo">W</span>
         <span>Wanderlust</span>
       </a>
 
-      <div class="d-flex align-items-center ms-auto">
-        <form class="d-flex" role="search" action="/listings" method="GET">
+      <div class="desktop-right">
+        <form role="search" action="/listings" method="GET">
           <input
-            class="form-control me-2 search-inp"
+            class="form-control search-inp"
             type="search"
             name="search"
             placeholder="Search destination"
@@ -428,7 +416,7 @@
       </div>
     </div>
 
-    <!-- Mobile navbar -->
+    <!-- Mobile navbar: profile replaces hamburger -->
     <div class="mobile-navbar">
       <a class="brand-wrap" href="/">
         <span class="brand-logo">W</span>
@@ -452,17 +440,61 @@
           <span>Add</span>
         </a>
 
-        <button
-          class="navbar-toggler mobile-menu-toggle"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#mobileNavMenu"
-          aria-controls="mobileNavMenu"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <% if (currUser) { %>
+          <div class="dropdown">
+            <button
+              class="btn profile-btn dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              aria-label="Account profile"
+            >
+              <%= currUser.username.charAt(0).toUpperCase() %>
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end profile-menu">
+              <li class="menu-head">
+                Signed in as<br /><b><%= currUser.email %></b>
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a class="dropdown-item" href="/account">
+                  <i class="fa-regular fa-user me-2"></i>My Account
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/logout">
+                  <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Log out
+                </a>
+              </li>
+            </ul>
+          </div>
+        <% } else { %>
+          <div class="dropdown">
+            <button
+              class="btn profile-btn dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              aria-label="Account options"
+            >
+              <i class="fa-regular fa-user"></i>
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end profile-menu">
+              <li>
+                <a class="dropdown-item" href="/signup">
+                  <i class="fa-solid fa-user-plus me-2"></i>Sign up
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/login">
+                  <i class="fa-solid fa-right-to-bracket me-2"></i>Log in
+                </a>
+              </li>
+            </ul>
+          </div>
+        <% } %>
       </div>
     </div>
 
@@ -480,47 +512,6 @@
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </form>
-    </div>
-
-    <!-- Mobile-only menu; hidden on desktop -->
-    <div class="collapse navbar-collapse" id="mobileNavMenu">
-      <div class="navbar-nav ms-auto">
-        <% if (!currUser) { %>
-          <a class="nav-link" href="/signup"><b>Sign up</b></a>
-          <a class="nav-link" href="/login"><b>Log in</b></a>
-        <% } %>
-
-        <% if (currUser) { %>
-          <div class="dropdown">
-            <button
-              class="btn profile-btn dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              aria-label="Profile menu"
-            >
-              <%= currUser.username.charAt(0).toUpperCase() %>
-            </button>
-
-            <ul class="dropdown-menu profile-menu">
-              <li class="menu-head">
-                Signed in as<br /><b><%= currUser.email %></b>
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <a class="dropdown-item" href="/account">
-                  <i class="fa-regular fa-user me-2"></i>My Account
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="/logout">
-                  <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Log out
-                </a>
-              </li>
-            </ul>
-          </div>
-        <% } %>
-      </div>
     </div>
 
   </div>
