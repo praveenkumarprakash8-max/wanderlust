@@ -424,3 +424,48 @@ footer p {
     flex-wrap: wrap;
   }
 }
+
+/* Navbar quick fix */
+header.navbar {
+  min-height: 82px;
+  padding: 18px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid #e4ebf3;
+  position: relative;
+  z-index: 1000;
+}
+
+header.navbar a {
+  color: var(--navy);
+  text-decoration: none !important;
+}
+
+header.navbar nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+header.navbar nav a.signup-btn {
+  background: var(--blue);
+  color: #fff;
+  padding: 12px 21px;
+  border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+  header.navbar {
+    padding: 14px 5%;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  header.navbar nav {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+}

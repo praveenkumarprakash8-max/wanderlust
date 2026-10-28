@@ -3,34 +3,42 @@
   @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&display=swap");
 
   .main-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    padding: 0.6rem 0;
     background: #fff;
     box-shadow: 0 2px 16px rgba(16, 24, 40, 0.06);
-    padding: 0.6rem 0;
   }
 
-  .brand-wrap {
+  .main-navbar .container-fluid {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .main-navbar .brand-wrap {
     display: inline-flex;
     align-items: center;
     gap: 11px;
-    font-family: "Manrope", sans-serif;
-    font-weight: 800;
-    font-size: 24px;
-    letter-spacing: -1px;
     color: #12314d;
+    font-family: "Manrope", sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -1px;
     text-decoration: none;
     white-space: nowrap;
   }
 
-  .brand-wrap:hover {
+  .main-navbar .brand-wrap:hover {
     color: #12314d;
   }
 
-  .brand-logo {
+  .main-navbar .brand-logo {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
     width: 39px;
     height: 39px;
-    flex-shrink: 0;
-    display: grid;
-    place-items: center;
     border-radius: 12px;
     background: #1769aa;
     color: #fff;
@@ -38,7 +46,14 @@
     letter-spacing: 0;
   }
 
-  .search-btn {
+  .main-navbar .search-inp {
+    min-width: 0;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 1rem;
+  }
+
+  .main-navbar .search-btn {
     padding: 0 1rem;
     border: 1px solid #1769aa;
     border-radius: 25px;
@@ -48,24 +63,17 @@
     transition: all 0.25s;
   }
 
-  .search-btn:hover {
+  .main-navbar .search-btn:hover {
     background: #1769aa;
     color: #fff;
   }
 
-  .search-btn i {
+  .main-navbar .search-btn i {
     margin-right: 0.5rem;
   }
 
-  .search-inp {
-    min-width: 0;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    font-size: 1rem;
-  }
-
-  .add-listing-btn {
-    margin-right: 12px;
+  .main-navbar .add-listing-btn {
+    margin: 0 12px;
     padding: 8px 18px;
     border: 1px solid #1769aa;
     border-radius: 8px;
@@ -73,10 +81,10 @@
     color: #fff;
     font-weight: 600;
     white-space: nowrap;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
   }
 
-  .add-listing-btn:hover {
+  .main-navbar .add-listing-btn:hover {
     transform: translateY(-2px);
     border-color: #12314d;
     background: #12314d;
@@ -84,12 +92,12 @@
     box-shadow: 0 4px 12px rgba(18, 49, 77, 0.25);
   }
 
-  .profile-btn {
-    width: 42px;
-    height: 42px;
+  .main-navbar .profile-btn {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 42px;
+    height: 42px;
     padding: 0;
     border: 2px solid #e3e7ea;
     border-radius: 50%;
@@ -99,20 +107,20 @@
     font-weight: 700;
   }
 
-  .profile-btn:hover,
-  .profile-btn:focus,
-  .profile-btn.show {
+  .main-navbar .profile-btn:hover,
+  .main-navbar .profile-btn:focus,
+  .main-navbar .profile-btn.show {
     border-color: #12314d;
     background: #12314d;
     color: #fff;
     box-shadow: 0 4px 12px rgba(18, 49, 77, 0.25);
   }
 
-  .profile-btn::after {
+  .main-navbar .profile-btn::after {
     display: none;
   }
 
-  .profile-menu {
+  .main-navbar .profile-menu {
     min-width: 220px;
     padding: 8px;
     border: none;
@@ -120,36 +128,52 @@
     box-shadow: 0 12px 32px rgba(16, 24, 40, 0.16);
   }
 
-  .profile-menu .dropdown-item {
+  .main-navbar .profile-menu .dropdown-item {
     padding: 10px 14px;
     border-radius: 10px;
     font-weight: 500;
   }
 
-  .profile-menu .dropdown-item:hover {
+  .main-navbar .profile-menu .dropdown-item:hover {
     background: #f3f6f4;
   }
 
-  .profile-menu .menu-head {
+  .main-navbar .profile-menu .menu-head {
     padding: 8px 14px 10px;
     color: #6b7280;
     font-size: 0.8rem;
     overflow-wrap: anywhere;
   }
 
-  /* Mobile controls are hidden on desktop */
-  .mobile-navbar,
-  .mobile-search-panel {
+  /* Desktop/mobile visibility defaults */
+  .main-navbar .desktop-navbar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .main-navbar .mobile-navbar,
+  .main-navbar .mobile-search-panel {
     display: none;
   }
 
-  .mobile-icon-btn {
-    width: 40px;
-    height: 40px;
-    flex: 0 0 40px;
+  /* Mobile controls */
+  .main-navbar .mobile-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 7px;
+    flex-shrink: 0;
+  }
+
+  .main-navbar .mobile-icon-btn,
+  .main-navbar .mobile-menu-toggle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
     padding: 0;
     border: 1px solid #dce6ee;
     border-radius: 11px;
@@ -158,16 +182,17 @@
     font-size: 17px;
   }
 
-  .mobile-icon-btn:hover {
+  .main-navbar .mobile-icon-btn:hover,
+  .main-navbar .mobile-menu-toggle:hover {
     background: #eef6fc;
   }
 
-  .mobile-add-btn {
-    min-height: 40px;
+  .main-navbar .mobile-add-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
+    min-height: 40px;
     padding: 0 10px;
     border: 1px solid #1769aa;
     border-radius: 11px;
@@ -179,62 +204,47 @@
     white-space: nowrap;
   }
 
-  .mobile-add-btn:hover {
+  .main-navbar .mobile-add-btn:hover {
     background: #12314d;
     color: #fff;
   }
 
-  /* Mobile My Account dropdown */
-  .mobile-account-dropdown {
-    position: relative;
-    flex: 0 0 auto;
-  }
-
-  .mobile-account-dropdown .profile-btn {
-    width: 40px;
-    height: 40px;
-    flex: 0 0 40px;
-    border: 1px solid #dce6ee;
-    background: #fff;
-    color: #1769aa;
-    font-size: 19px;
-  }
-
-  .mobile-account-dropdown .profile-btn:hover,
-  .mobile-account-dropdown .profile-btn:focus,
-  .mobile-account-dropdown .profile-btn.show {
-    border-color: #1769aa;
-    background: #eef6fc;
-    color: #1769aa;
-    box-shadow: 0 0 0 3px rgba(23, 105, 170, 0.12);
-  }
-
-  .mobile-account-dropdown .profile-menu {
-    right: 0;
-    left: auto;
-    margin-top: 10px;
-  }
-
-  /* Mobile search panel */
-  .mobile-search-panel {
+  .main-navbar .mobile-search-panel {
     padding: 10px 0 2px;
   }
 
-  .mobile-search-panel form {
+  .main-navbar .mobile-search-panel.is-open {
+    display: block;
+  }
+
+  .main-navbar .mobile-search-panel form {
     display: flex;
     gap: 8px;
   }
 
-  .mobile-search-panel .search-inp {
+  .main-navbar .mobile-search-panel .search-inp {
     flex: 1;
     width: 100%;
   }
 
-  .mobile-search-panel .search-btn {
+  .main-navbar .mobile-search-panel .search-btn {
     min-height: 42px;
   }
 
-  /* Mobile layout only */
+  /* CRITICAL FIX: mobile menu must never show on desktop */
+  @media (min-width: 768px) {
+    .main-navbar .desktop-navbar {
+      display: flex !important;
+    }
+
+    .main-navbar .mobile-navbar,
+    .main-navbar #mobileNavMenu,
+    .main-navbar .mobile-search-panel {
+      display: none !important;
+    }
+  }
+
+  /* Mobile layout */
   @media (max-width: 767.98px) {
     .main-navbar {
       padding: 10px 0;
@@ -242,73 +252,103 @@
 
     .main-navbar > .container-fluid {
       display: block;
-      padding-right: 12px;
       padding-left: 12px;
+      padding-right: 12px;
     }
 
-    .desktop-navbar {
+    .main-navbar .desktop-navbar {
       display: none !important;
     }
 
-    .mobile-navbar {
-      display: flex;
+    .main-navbar .mobile-navbar {
+      display: flex !important;
       align-items: center;
       justify-content: space-between;
       gap: 8px;
       width: 100%;
     }
 
-    .mobile-navbar .brand-wrap {
+    .main-navbar .mobile-navbar .brand-wrap {
       min-width: 0;
       gap: 7px;
       font-size: clamp(16px, 4.5vw, 22px);
       letter-spacing: -0.7px;
     }
 
-    .mobile-navbar .brand-logo {
+    .main-navbar .mobile-navbar .brand-logo {
       width: 36px;
       height: 36px;
       border-radius: 10px;
       font-size: 20px;
     }
 
-    .mobile-actions {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 7px;
-      flex-shrink: 0;
+    .main-navbar .mobile-search-panel {
+      display: none;
     }
 
-    #mobileSearchPanel.is-open {
+    .main-navbar .mobile-search-panel.is-open {
       display: block;
+    }
+
+    /* Mobile hamburger menu */
+    .main-navbar #mobileNavMenu {
+      width: 100%;
+      padding: 10px 2px 2px;
+    }
+
+    .main-navbar #mobileNavMenu.collapse:not(.show) {
+      display: none !important;
+    }
+
+    .main-navbar #mobileNavMenu.collapse.show {
+      display: block !important;
+    }
+
+    .main-navbar #mobileNavMenu .nav-link {
+      padding: 12px 10px;
+      border-bottom: 1px solid #edf0f3;
+      color: #12314d;
+      text-decoration: none;
+    }
+
+    .main-navbar #mobileNavMenu .profile-btn {
+      margin: 10px 0 4px 8px;
+    }
+
+    .main-navbar #mobileNavMenu .profile-menu {
+      width: 100%;
     }
   }
 
   @media (max-width: 380px) {
-    .mobile-navbar .brand-wrap {
+    .main-navbar .container-fluid {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
+    .main-navbar .mobile-navbar .brand-wrap {
       gap: 5px;
       font-size: 15px;
     }
 
-    .mobile-navbar .brand-logo {
+    .main-navbar .mobile-navbar .brand-logo {
       width: 32px;
       height: 32px;
       font-size: 18px;
     }
 
-    .mobile-actions {
+    .main-navbar .mobile-actions {
       gap: 5px;
     }
 
-    .mobile-icon-btn,
-    .mobile-account-dropdown .profile-btn {
+    .main-navbar .mobile-icon-btn,
+    .main-navbar .mobile-menu-toggle {
+      flex-basis: 36px;
       width: 36px;
       height: 36px;
-      flex-basis: 36px;
     }
 
-    .mobile-add-btn {
+    .main-navbar .mobile-add-btn {
       min-height: 36px;
       gap: 4px;
       padding: 0 7px;
@@ -317,8 +357,8 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .search-btn,
-    .add-listing-btn {
+    .main-navbar .search-btn,
+    .main-navbar .add-listing-btn {
       transition: none;
     }
   }
@@ -327,8 +367,8 @@
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top main-navbar">
   <div class="container-fluid">
 
-    <!-- Desktop navbar: original layout preserved -->
-    <div class="desktop-navbar d-flex align-items-center w-100">
+    <!-- Desktop navbar -->
+    <div class="desktop-navbar">
       <a class="brand-wrap" href="/">
         <span class="brand-logo">W</span>
         <span>Wanderlust</span>
@@ -388,7 +428,7 @@
       </div>
     </div>
 
-    <!-- Mobile navbar: Logo + Search + Add + My Account -->
+    <!-- Mobile navbar -->
     <div class="mobile-navbar">
       <a class="brand-wrap" href="/">
         <span class="brand-logo">W</span>
@@ -396,7 +436,6 @@
       </a>
 
       <div class="mobile-actions">
-        <!-- Search icon -->
         <button
           class="mobile-icon-btn"
           type="button"
@@ -408,63 +447,26 @@
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
 
-        <!-- Add listing -->
         <a class="mobile-add-btn" href="/listings/new">
           <i class="fa-solid fa-plus"></i>
           <span>Add</span>
         </a>
 
-        <!-- My Account icon replaces hamburger -->
-        <div class="dropdown mobile-account-dropdown">
-          <button
-            class="btn profile-btn dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            data-bs-auto-close="true"
-            aria-expanded="false"
-            aria-label="Open My Account menu"
-          >
-            <% if (currUser) { %>
-              <%= currUser.username.charAt(0).toUpperCase() %>
-            <% } else { %>
-              <i class="fa-regular fa-user"></i>
-            <% } %>
-          </button>
-
-          <ul class="dropdown-menu profile-menu">
-            <% if (currUser) { %>
-              <li class="menu-head">
-                Signed in as<br /><b><%= currUser.email %></b>
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <a class="dropdown-item" href="/account">
-                  <i class="fa-regular fa-user me-2"></i>My Account
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="/logout">
-                  <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Log out
-                </a>
-              </li>
-            <% } else { %>
-              <li>
-                <a class="dropdown-item" href="/login">
-                  <i class="fa-solid fa-right-to-bracket me-2"></i>Log in
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="/signup">
-                  <i class="fa-solid fa-user-plus me-2"></i>Sign up
-                </a>
-              </li>
-            <% } %>
-          </ul>
-        </div>
+        <button
+          class="navbar-toggler mobile-menu-toggle"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mobileNavMenu"
+          aria-controls="mobileNavMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
       </div>
     </div>
 
-    <!-- Mobile search panel: opens when search icon is tapped -->
+    <!-- Mobile search panel -->
     <div class="mobile-search-panel" id="mobileSearchPanel">
       <form role="search" action="/listings" method="GET">
         <input
@@ -480,98 +482,68 @@
       </form>
     </div>
 
+    <!-- Mobile-only menu; hidden on desktop -->
+    <div class="collapse navbar-collapse" id="mobileNavMenu">
+      <div class="navbar-nav ms-auto">
+        <% if (!currUser) { %>
+          <a class="nav-link" href="/signup"><b>Sign up</b></a>
+          <a class="nav-link" href="/login"><b>Log in</b></a>
+        <% } %>
+
+        <% if (currUser) { %>
+          <div class="dropdown">
+            <button
+              class="btn profile-btn dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              aria-label="Profile menu"
+            >
+              <%= currUser.username.charAt(0).toUpperCase() %>
+            </button>
+
+            <ul class="dropdown-menu profile-menu">
+              <li class="menu-head">
+                Signed in as<br /><b><%= currUser.email %></b>
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a class="dropdown-item" href="/account">
+                  <i class="fa-regular fa-user me-2"></i>My Account
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/logout">
+                  <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Log out
+                </a>
+              </li>
+            </ul>
+          </div>
+        <% } %>
+      </div>
+    </div>
+
   </div>
 </nav>
-
 
 <script>
   (() => {
     const searchToggle = document.getElementById("mobileSearchToggle");
     const searchPanel = document.getElementById("mobileSearchPanel");
-    const accountDropdown = document.querySelector(
-      ".mobile-account-dropdown"
-    );
-    const accountToggle = accountDropdown?.querySelector(
-      '[data-bs-toggle="dropdown"]'
-    );
 
-    // Close the mobile search panel
-    function closeSearch() {
-      if (!searchToggle || !searchPanel) return;
-
-      searchPanel.classList.remove("is-open");
-      searchToggle.setAttribute("aria-expanded", "false");
-      searchToggle.setAttribute("aria-label", "Open search");
-    }
-
-    // Close the My Account dropdown using Bootstrap
-    function closeAccount() {
-      if (!accountToggle || !window.bootstrap?.Dropdown) return;
-
-      const dropdown = window.bootstrap.Dropdown.getInstance(accountToggle);
-
-      if (dropdown) {
-        dropdown.hide();
-      }
-    }
-
-    // Toggle mobile search panel
     if (searchToggle && searchPanel) {
       searchToggle.addEventListener("click", () => {
-        const isOpen = searchPanel.classList.contains("is-open");
+        const isOpen = searchPanel.classList.toggle("is-open");
 
-        // Close account dropdown before opening search
-        closeAccount();
+        searchToggle.setAttribute("aria-expanded", String(isOpen));
+        searchToggle.setAttribute(
+          "aria-label",
+          isOpen ? "Close search" : "Open search"
+        );
 
         if (isOpen) {
-          closeSearch();
-        } else {
-          searchPanel.classList.add("is-open");
-          searchToggle.setAttribute("aria-expanded", "true");
-          searchToggle.setAttribute("aria-label", "Close search");
-
           const input = searchPanel.querySelector('input[type="search"]');
           if (input) input.focus();
-        }
-      });
-    }
-
-    // Close search when My Account is clicked
-    if (accountToggle) {
-      accountToggle.addEventListener("click", () => {
-        closeSearch();
-      });
-    }
-
-    // Close both when the user scrolls
-    let scrollTimeout;
-
-    window.addEventListener(
-      "scroll",
-      () => {
-        closeSearch();
-        closeAccount();
-      },
-      { passive: true }
-    );
-
-    // Close search when tapping outside its panel
-    document.addEventListener("click", (event) => {
-      if (
-        searchPanel &&
-        searchToggle &&
-        !searchPanel.contains(event.target) &&
-        !searchToggle.contains(event.target)
-      ) {
-        closeSearch();
-      }
-    });
-
-    // Close dropdown after Bootstrap finishes hiding it
-    if (accountDropdown) {
-      accountDropdown.addEventListener("hidden.bs.dropdown", () => {
-        if (accountToggle) {
-          accountToggle.setAttribute("aria-expanded", "false");
         }
       });
     }
