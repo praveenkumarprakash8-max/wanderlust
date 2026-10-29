@@ -252,14 +252,9 @@ body:has(form[action="/signup"]) form[action="/signup"] .btn-success:hover {
 }
 
 /* =========================================
-   LOGIN PAGE
-========================================= */
-
-/* =========================================
    LOGIN PAGE - RESPONSIVE DESIGN
 ========================================= */
 
-/* Login page card */
 body:has(form[action="/login"]) .card {
   width: 100%;
   border: 1px solid #e1e9e3 !important;
@@ -268,12 +263,10 @@ body:has(form[action="/login"]) .card {
   box-shadow: 0 8px 24px rgba(18, 55, 42, 0.08) !important;
 }
 
-/* Card body spacing */
 body:has(form[action="/login"]) .card-body {
   padding: 28px !important;
 }
 
-/* Login heading */
 body:has(form[action="/login"]) h2 {
   color: #12372a;
   font-size: 28px;
@@ -282,13 +275,11 @@ body:has(form[action="/login"]) h2 {
   margin-bottom: 8px;
 }
 
-/* Description */
 body:has(form[action="/login"]) .card-body > div:first-child p {
   color: #6c757d;
   font-size: 14px;
 }
 
-/* Labels */
 body:has(form[action="/login"]) form[action="/login"] .form-label {
   display: block;
   margin-bottom: 6px;
@@ -297,7 +288,6 @@ body:has(form[action="/login"]) form[action="/login"] .form-label {
   font-weight: 600;
 }
 
-/* Input fields */
 body:has(form[action="/login"]) form[action="/login"] .form-control {
   width: 100%;
   min-width: 0;
@@ -314,7 +304,6 @@ body:has(form[action="/login"]) form[action="/login"] .form-control {
     box-shadow 0.2s ease;
 }
 
-/* Input focus */
 body:has(form[action="/login"]) form[action="/login"] .form-control:focus {
   background-color: #ffffff;
   border-color: #32684c;
@@ -322,7 +311,6 @@ body:has(form[action="/login"]) form[action="/login"] .form-control:focus {
   outline: none;
 }
 
-/* Password input group */
 body:has(form[action="/login"]) form[action="/login"] .input-group {
   display: flex;
   flex-wrap: nowrap;
@@ -335,7 +323,6 @@ body:has(form[action="/login"])
   border-radius: 8px 0 0 8px;
 }
 
-/* Show / Hide password button */
 body:has(form[action="/login"]) #togglePassword {
   flex-shrink: 0;
   padding: 8px 13px;
@@ -352,7 +339,6 @@ body:has(form[action="/login"]) #togglePassword:hover {
   background-color: #edf4ef;
 }
 
-/* Forgot password link */
 body:has(form[action="/login"]) a[href="/forgot-password"] {
   color: #32684c;
   font-size: 13px;
@@ -365,13 +351,12 @@ body:has(form[action="/login"]) a[href="/forgot-password"]:hover {
   text-decoration: underline;
 }
 
-/* Login button */
 body:has(form[action="/login"]) form[action="/login"] button[type="submit"] {
   min-height: 44px;
   padding: 10px 18px;
   color: #ffffff;
   background-color: #12372a;
-  border: 1px solid #12372a;
+  border: 1px solid #f8fcfa;
   border-radius: 999px;
   font-size: 15px;
   font-weight: 600;
@@ -385,27 +370,43 @@ body:has(form[action="/login"])
   button[type="submit"]:hover {
   color: #ffffff;
   background-color: #1b513c;
-  border-color: #1b513c;
+  border-color: #fafbfb;
   box-shadow: 0 4px 12px rgba(18, 55, 42, 0.15);
 }
 
-/* Google login button */
+/* =========================================
+   GOOGLE LOGIN - BORDER REMOVED
+========================================= */
+
 body:has(form[action="/login"]) a[href="/auth/google"] {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 44px;
   padding: 10px 16px;
-  border: 1px solid #343a40;
+
+  border: none !important;
+  outline: none;
+  box-shadow: none !important;
+
   border-radius: 999px;
   font-size: 14px;
   font-weight: 500;
-  transition: background-color 0.2s ease;
+  text-decoration: none;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
-body:has(form[action="/login"]) a[href="/auth/google"]:hover {
-  color: #ffffff;
-  background-color: #212529;
+/* Hover only on laptop/desktop with mouse or trackpad */
+@media (hover: hover) and (pointer: fine) {
+  body:has(form[action="/login"]) a[href="/auth/google"]:hover {
+    color: #ffffff;
+    background-color: #212529;
+    border: none !important;
+    box-shadow: none !important;
+  }
 }
 
 /* OR divider */
@@ -498,14 +499,10 @@ body:has(form[action="/login"]) form[action="/login"] .mb-2 {
   box-sizing: border-box;
 }
 
-/* Show page container */
-
 .listing-show-page .show-container {
   max-width: 1180px;
   margin: 0 auto;
 }
-
-/* Back link */
 
 .listing-show-page .back-link {
   display: inline-flex;
@@ -521,8 +518,6 @@ body:has(form[action="/login"]) form[action="/login"] .mb-2 {
 .listing-show-page .back-link:hover {
   color: var(--cozy-terracotta);
 }
-
-/* Main listing layout */
 
 .listing-show-page .listing-details {
   display: grid;
@@ -567,8 +562,6 @@ body:has(form[action="/login"]) form[action="/login"] .mb-2 {
   font-size: 0.82rem;
   font-weight: 600;
 }
-
-/* Listing information */
 
 .listing-show-page .listing-info {
   min-width: 0;
@@ -627,8 +620,6 @@ body:has(form[action="/login"]) form[action="/login"] .mb-2 {
   overflow-wrap: anywhere;
 }
 
-/* Location and country */
-
 .listing-show-page .listing-meta {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -667,8 +658,6 @@ body:has(form[action="/login"]) form[action="/login"] .mb-2 {
   overflow-wrap: anywhere;
 }
 
-/* Price */
-
 .listing-show-page .listing-price {
   padding: 18px 0;
   border-top: 1px solid var(--cozy-border);
@@ -682,8 +671,6 @@ body:has(form[action="/login"]) form[action="/login"] .mb-2 {
   font-weight: 750;
   overflow-wrap: anywhere;
 }
-
-/* Edit and delete listing */
 
 .listing-show-page .listing-actions {
   display: flex;
@@ -761,8 +748,6 @@ body:has(form[action="/login"]) form[action="/login"] .mb-2 {
   box-shadow: 0 8px 28px rgba(53, 66, 49, 0.05);
 }
 
-/* Section headings */
-
 .listing-show-page .section-heading {
   display: flex;
   align-items: center;
@@ -796,8 +781,6 @@ body:has(form[action="/login"]) form[action="/login"] .mb-2 {
   line-height: 1.6;
 }
 
-/* Review form */
-
 .listing-show-page .cozy-review-form .form-label {
   margin-bottom: 10px;
   color: var(--cozy-text);
@@ -828,8 +811,6 @@ body:has(form[action="/login"]) form[action="/login"] .mb-2 {
   min-height: 46px;
 }
 
-/* All reviews heading */
-
 .listing-show-page .reviews-title {
   margin-bottom: 22px;
 }
@@ -848,8 +829,6 @@ body:has(form[action="/login"]) form[action="/login"] .mb-2 {
   font-size: 0.85rem;
   font-weight: 700;
 }
-
-/* Individual review cards */
 
 .listing-show-page .reviews-list {
   display: grid;
@@ -921,8 +900,6 @@ body:has(form[action="/login"]) form[action="/login"] .mb-2 {
   overflow-wrap: anywhere;
 }
 
-/* Review delete button */
-
 .listing-show-page .review-delete-form {
   display: flex;
   justify-content: flex-end;
@@ -948,8 +925,6 @@ body:has(form[action="/login"]) form[action="/login"] .mb-2 {
 .listing-show-page .review-delete-btn:hover {
   background: #fff0ea;
 }
-
-/* Empty reviews */
 
 .listing-show-page .empty-reviews {
   padding: 30px 12px;
@@ -1098,7 +1073,6 @@ body:has(form[action="/login"]) form[action="/login"] .mb-2 {
     flex-shrink: 0;
   }
 
-  /* Search bar and Search button centered */
   .desktop-navbar form[action="/listings"] {
     position: absolute;
     left: 50%;
@@ -1170,7 +1144,6 @@ body:has(form[action="/login"]) form[action="/login"] .mb-2 {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
 }
 
-/* Heading centered */
 .listing-form-card .listing-heading {
   display: block;
   width: 100%;
@@ -1182,7 +1155,6 @@ body:has(form[action="/login"]) form[action="/login"] .mb-2 {
   line-height: 1.3;
 }
 
-/* Labels */
 .listing-form-card .form-label {
   display: block;
   margin-bottom: 8px;
@@ -1191,7 +1163,6 @@ body:has(form[action="/login"]) form[action="/login"] .mb-2 {
   font-weight: 600;
 }
 
-/* Inputs */
 .listing-form-card .form-control {
   width: 100%;
   min-height: 44px;
@@ -1218,19 +1189,16 @@ body:has(form[action="/login"]) form[action="/login"] .mb-2 {
   padding: 8px;
 }
 
-/* Focus effect */
 .listing-form-card .form-control:focus {
   border-color: #2878ad;
   outline: none;
   box-shadow: 0 0 0 3px rgba(40, 120, 173, 0.12);
 }
 
-/* Keep price and country columns aligned */
 .listing-form-card .row {
   --bs-gutter-x: 16px;
 }
 
-/* Add Listing button */
 .listing-form-card .add-btn {
   display: block;
   width: 100%;
@@ -1304,7 +1272,6 @@ body:has(form[action="/login"]) form[action="/login"] .mb-2 {
   }
 }
 
-/* Small mobile screens */
 @media (max-width: 380px) {
   .listing-form-card {
     padding: 18px 12px;
