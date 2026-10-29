@@ -1,147 +1,611 @@
-<% layout("/layouts/auth")-%>
+<% layout("/layouts/auth") -%>
 
-<div class="row mt-5 mb-5">
-  <div class="col-md-6 offset-md-3 col-lg-5 offset-lg-3">
-    <div class="card shadow-sm border-0 rounded-4 p-4">
-      <a
-        href="/"
-        class="text-dark text-decoration-none mb-2 d-inline-flex align-items-center gap-2"
-        aria-label="Back to home"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="currentColor"
-          viewBox="0 0 16 16"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
-          />
-        </svg>
-        <span>Back</span>
-      </a>
-
-      <div class="text-center mb-4">
-        <h1 class="fw-bold">Join Wanderlust</h1>
-        <!-- <p class="text-muted">Your next adventure starts here.</p> -->
-      </div>
-
-      <form action="/signup" method="POST" class="needs-validation" novalidate>
-        <div class="mb-3">
-          <label for="username" class="form-label">Username</label>
-          <input
-            name="username"
-            id="username"
-            type="text"
-            class="form-control"
-            placeholder="Choose a username"
-            required
-          />
-          <div class="invalid-feedback">Please enter a username.</div>
-        </div>
-
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input
-            name="email"
-            id="email"
-            type="email"
-            class="form-control"
-            placeholder="you@example.com"
-            required
-          />
-          <div class="invalid-feedback">Please enter a valid email.</div>
-        </div>
-
-        <div class="mb-4">
-          <label for="password" class="form-label">Password</label>
-          <div class="input-group has-validation">
-            <input
-              name="password"
-              id="password"
-              type="password"
-              class="form-control"
-              placeholder="Create a password"
-              required
+<div class="container signup-page">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="signup-card">
+        <!-- Back to Home -->
+        <a href="/" class="signup-back" aria-label="Back to home">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
             />
-            <button
-              type="button"
-              id="togglePassword"
-              class="btn btn-outline-secondary"
-              aria-label="Show password"
-            >
-              <svg
-                id="eyeOpen"
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                fill="currentColor"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"
-                />
-                <path
-                  d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
-                />
-              </svg>
-              <svg
-                id="eyeClosed"
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                fill="currentColor"
-                viewBox="0 0 16 16"
-                style="display: none"
-              >
-                <path
-                  d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"
-                />
-                <path
-                  d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"
-                />
-                <path
-                  d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"
-                />
-              </svg>
-            </button>
-            <div class="invalid-feedback">Please enter a password.</div>
+          </svg>
+          <span>Back</span>
+        </a>
+
+        <!-- Header -->
+        <div class="signup-header">
+          <div class="signup-icon">
+            <i class="fa-regular fa-compass" aria-hidden="true"></i>
           </div>
+
+          <p class="signup-eyebrow">START YOUR JOURNEY</p>
+          <h1>Join Wanderlust</h1>
         </div>
 
-        <button class="btn btn-success w-100 py-2" type="submit">
-          Create Account
-        </button>
-      </form>
+        <!-- Signup Form -->
+        <form
+          action="/signup"
+          method="POST"
+          class="signup-form needs-validation"
+          novalidate
+        >
+          <!-- Username -->
+          <div class="signup-field">
+            <label for="username">Username</label>
 
-      <a href="/auth/google" class="btn btn-outline-secondary w-100 mt-3">
-        Continue with Google
-      </a>
+            <div class="signup-input-wrap">
+              <i class="fa-regular fa-user" aria-hidden="true"></i>
 
-      <div class="text-center mt-4">
-        <span class="text-muted">Already have an account?</span>
-        <a href="/login" class="text-decoration-none fw-semibold"> Login </a>
+              <input
+                name="username"
+                id="username"
+                type="text"
+                placeholder="Choose a username"
+                autocomplete="username"
+                required
+              />
+
+              <div class="invalid-feedback">Please enter a username.</div>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="signup-field">
+            <label for="email">Email</label>
+
+            <div class="signup-input-wrap">
+              <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+
+              <input
+                name="email"
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+              />
+
+              <div class="invalid-feedback">Please enter a valid email.</div>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="signup-field">
+            <label for="password">Password</label>
+
+            <div class="signup-input-wrap">
+              <i class="fa-solid fa-lock" aria-hidden="true"></i>
+
+              <input
+                name="password"
+                id="password"
+                type="password"
+                placeholder="Create a password"
+                autocomplete="new-password"
+                required
+              />
+
+              <button
+                type="button"
+                id="togglePassword"
+                class="signup-toggle"
+                aria-label="Show password"
+                aria-controls="password"
+                aria-pressed="false"
+              >
+                <svg
+                  id="eyeOpen"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="17"
+                  height="17"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"
+                  />
+                  <path
+                    d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
+                  />
+                </svg>
+
+                <svg
+                  id="eyeClosed"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="17"
+                  height="17"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                  style="display: none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"
+                  />
+                  <path
+                    d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"
+                  />
+                  <path
+                    d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"
+                  />
+                </svg>
+              </button>
+
+              <div class="invalid-feedback">Please enter a password.</div>
+            </div>
+          </div>
+
+          <!-- Create Account -->
+          <button class="signup-submit" type="submit">
+            <span>Create Account</span>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </form>
+
+        <!-- Divider -->
+        <div class="signup-divider">
+          <span></span>
+          <p>OR</p>
+          <span></span>
+        </div>
+
+        <!-- Google Signup -->
+        <a href="/auth/google" class="signup-google">
+          <i class="fa-brands fa-google" aria-hidden="true"></i>
+          <span>Continue with Google</span>
+        </a>
+
+        <!-- Login -->
+        <div class="signup-login">
+          <span>Already have an account?</span>
+          <a href="/login">Login</a>
+        </div>
+
+        <!-- Security -->
+        <div class="signup-security">
+          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+          <span>Your information is protected.</span>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<script>
-  const passwordInput = document.getElementById("password");
-  const toggleBtn = document.getElementById("togglePassword");
-  const eyeOpen = document.getElementById("eyeOpen");
-  const eyeClosed = document.getElementById("eyeClosed");
+<style>
+  /* =====================================
+     WANDERLUST COMPACT SIGNUP PAGE
+  ===================================== */
 
-  toggleBtn.addEventListener("click", () => {
-    const isHidden = passwordInput.type === "password";
-    passwordInput.type = isHidden ? "text" : "password";
-    eyeOpen.style.display = isHidden ? "none" : "inline";
-    eyeClosed.style.display = isHidden ? "inline" : "none";
-    toggleBtn.setAttribute(
-      "aria-label",
-      isHidden ? "Hide password" : "Show password",
-    );
-  });
+  .signup-page,
+  .signup-page * {
+    box-sizing: border-box;
+  }
+
+  .signup-page {
+    --signup-red: #fe424d;
+    --signup-red-dark: #e8323e;
+    --signup-text: #252832;
+    --signup-muted: #818b9d;
+    --signup-border: #dfe4ed;
+
+    width: 100%;
+    max-width: none;
+    min-height: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 12px !important;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    background:
+      radial-gradient(
+        ellipse at top left,
+        rgba(254, 66, 77, 0.07),
+        transparent 40%
+      ),
+      #fffdfd;
+  }
+
+  .signup-page > .row {
+    width: 100%;
+    margin: 0;
+    justify-content: center;
+  }
+
+  .signup-page > .row > .col-12 {
+    width: 100%;
+    max-width: 424px;
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  /* Card */
+  .signup-page .signup-card {
+    width: 100%;
+    max-width: 400px;
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+
+    margin: 0 auto;
+    padding: 20px 24px;
+
+    border: 1px solid #f0edf0;
+    border-radius: 20px;
+    background: #fff;
+
+    box-shadow: 0 10px 32px rgba(35, 30, 40, 0.07);
+  }
+
+  /* Back link */
+  .signup-page .signup-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    margin-bottom: 12px;
+
+    color: #596273;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .signup-page .signup-back:hover {
+    color: var(--signup-red);
+  }
+
+  /* Header */
+  .signup-page .signup-header {
+    margin: 0 0 20px;
+    text-align: center;
+  }
+
+  .signup-page .signup-icon {
+    display: grid;
+    place-items: center;
+
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 10px;
+
+    border-radius: 50%;
+    background: #fff0f1;
+    color: var(--signup-red);
+  }
+
+  .signup-page .signup-icon i {
+    font-size: 23px;
+  }
+
+  .signup-page .signup-eyebrow {
+    margin: 0 0 6px;
+    color: var(--signup-red);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+
+  .signup-page .signup-header h1 {
+    margin: 0;
+    color: var(--signup-text);
+    font-size: 27px;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.6px;
+  }
+
+  /* Form */
+  .signup-page .signup-field {
+    margin-bottom: 13px;
+  }
+
+  .signup-page .signup-field label {
+    display: block;
+    margin-bottom: 6px;
+
+    color: #303644;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .signup-page .signup-input-wrap {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    min-width: 0;
+    height: 44px;
+    padding: 0 12px;
+
+    border: 1px solid var(--signup-border);
+    border-radius: 11px;
+    background: #fff;
+
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+  }
+
+  .signup-page .signup-input-wrap:focus-within {
+    border-color: var(--signup-red);
+    box-shadow: 0 0 0 3px rgba(254, 66, 77, 0.08);
+  }
+
+  .signup-page .signup-input-wrap > i {
+    flex-shrink: 0;
+    color: #8993a3;
+    font-size: 14px;
+  }
+
+  .signup-page .signup-input-wrap input {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    padding: 0;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+    outline: 0;
+    background: transparent !important;
+    box-shadow: none !important;
+
+    color: var(--signup-text);
+    font-family: inherit;
+    font-size: 12px;
+  }
+
+  .signup-page .signup-input-wrap input::placeholder {
+    color: #8993a3;
+    opacity: 1;
+  }
+
+  /* Validation feedback */
+  .signup-page .invalid-feedback {
+    font-size: 11px;
+  }
+
+  .signup-page .signup-input-wrap .invalid-feedback {
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+  }
+
+  .signup-page .signup-input-wrap:has(input:invalid:not(:placeholder-shown)) {
+    margin-bottom: 0;
+  }
+
+  /* Password visibility */
+  .signup-page .signup-toggle {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+
+    width: 27px;
+    height: 30px;
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+    color: var(--signup-muted);
+    cursor: pointer;
+  }
+
+  .signup-page .signup-toggle:hover {
+    color: var(--signup-red);
+  }
+
+  /* Primary button */
+  .signup-page .signup-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    width: 100%;
+    min-height: 43px;
+    margin-top: 4px;
+    padding: 9px 14px;
+
+    border: 0;
+    border-radius: 12px;
+    background: linear-gradient(110deg, #ff4651, #f73543);
+    color: #fff;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
+  }
+
+  .signup-page .signup-submit:hover {
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(254, 66, 77, 0.2);
+  }
+
+  /* Divider */
+  .signup-page .signup-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 15px 0;
+  }
+
+  .signup-page .signup-divider span {
+    flex: 1;
+    height: 1px;
+    background: #e5e8ef;
+  }
+
+  .signup-page .signup-divider p {
+    margin: 0;
+    color: #8993a3;
+    font-size: 10px;
+  }
+
+  /* Google button */
+  .signup-page .signup-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    width: 100%;
+    min-height: 42px;
+    padding: 8px 12px;
+
+    border: 1px solid var(--signup-border);
+    border-radius: 12px;
+    background: #fff;
+    color: #303644;
+
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+      background 0.2s,
+      border-color 0.2s;
+  }
+
+  .signup-page .signup-google:hover {
+    border-color: #c8cfda;
+    background: #898989;
+    color: #edeff5;
+  }
+
+  .signup-page .signup-google i {
+    color: #4285f4;
+    font-size: 15px;
+  }
+
+  /* Existing account */
+  .signup-page .signup-login {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    margin-top: 15px;
+
+    color: var(--signup-muted, #818b9d);
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .signup-page .signup-login a {
+    color: var(--signup-red);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .signup-page .signup-login a:hover {
+    text-decoration: underline;
+  }
+
+  /* Security */
+  .signup-page .signup-security {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    margin-top: 12px;
+    color: #8993a3;
+    font-size: 10px;
+    text-align: center;
+  }
+
+  .signup-page .signup-security i {
+    color: #239767;
+    font-size: 12px;
+  }
+
+  .signup-page a:focus-visible,
+  .signup-page button:focus-visible {
+    outline: 2px solid rgba(254, 66, 77, 0.5);
+    outline-offset: 3px;
+  }
+
+  /* Mobile */
+  @media (max-width: 575.98px) {
+    .signup-page {
+      padding: 10px !important;
+    }
+
+    .signup-page > .row > .col-12 {
+      max-width: 100%;
+    }
+
+    .signup-page .signup-card {
+      max-width: 100%;
+      padding: 20px 17px;
+      border-radius: 17px;
+    }
+
+    .signup-page .signup-header h1 {
+      font-size: 25px;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const form = document.querySelector(".signup-form");
+    const passwordInput = document.getElementById("password");
+    const toggleBtn = document.getElementById("togglePassword");
+    const eyeOpen = document.getElementById("eyeOpen");
+    const eyeClosed = document.getElementById("eyeClosed");
+
+    if (toggleBtn && passwordInput && eyeOpen && eyeClosed) {
+      toggleBtn.addEventListener("click", () => {
+        const isHidden = passwordInput.type === "password";
+
+        passwordInput.type = isHidden ? "text" : "password";
+        eyeOpen.style.display = isHidden ? "none" : "inline";
+        eyeClosed.style.display = isHidden ? "inline" : "none";
+
+        toggleBtn.setAttribute(
+          "aria-label",
+          isHidden ? "Hide password" : "Show password",
+        );
+
+        toggleBtn.setAttribute("aria-pressed", String(isHidden));
+      });
+    }
+
+    if (form) {
+      form.addEventListener("submit", (event) => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
+        form.classList.add("was-validated");
+      });
+    }
+  })();
 </script>

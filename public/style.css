@@ -255,57 +255,223 @@ body:has(form[action="/signup"]) form[action="/signup"] .btn-success:hover {
    LOGIN PAGE
 ========================================= */
 
-body:has(form[action="/login"]) form[action="/login"] {
+/* =========================================
+   LOGIN PAGE - RESPONSIVE DESIGN
+========================================= */
+
+/* Login page card */
+body:has(form[action="/login"]) .card {
+  width: 100%;
+  border: 1px solid #e1e9e3 !important;
+  border-radius: 16px !important;
   background: #ffffff;
-  padding: 30px;
-  border: 1px solid #e1e9e3;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(18, 55, 42, 0.1);
+  box-shadow: 0 8px 24px rgba(18, 55, 42, 0.08) !important;
 }
 
-body:has(form[action="/login"]) h1 {
+/* Card body spacing */
+body:has(form[action="/login"]) .card-body {
+  padding: 28px !important;
+}
+
+/* Login heading */
+body:has(form[action="/login"]) h2 {
   color: #12372a;
+  font-size: 28px;
   font-weight: 700;
   text-align: center;
+  margin-bottom: 8px;
 }
 
+/* Description */
+body:has(form[action="/login"]) .card-body > div:first-child p {
+  color: #6c757d;
+  font-size: 14px;
+}
+
+/* Labels */
 body:has(form[action="/login"]) form[action="/login"] .form-label {
+  display: block;
+  margin-bottom: 6px;
   color: #263b30;
+  font-size: 14px;
   font-weight: 600;
 }
 
+/* Input fields */
 body:has(form[action="/login"]) form[action="/login"] .form-control {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 13px;
   background-color: #fcfdfc;
   color: #24372c;
   border: 1px solid #dce5df;
   border-radius: 8px;
-  padding: 11px 13px;
-  transition: all 0.25s ease;
+  font-size: 14px;
+  box-shadow: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
+/* Input focus */
 body:has(form[action="/login"]) form[action="/login"] .form-control:focus {
   background-color: #ffffff;
-  color: #24372c;
   border-color: #32684c;
   box-shadow: 0 0 0 3px rgba(50, 104, 76, 0.12);
+  outline: none;
 }
 
-body:has(form[action="/login"]) form[action="/login"] .btn-success {
-  background-color: #12372a;
-  color: #ffffff;
-  border: 1px solid #12372a;
-  border-radius: 8px;
-  padding: 10px 22px;
+/* Password input group */
+body:has(form[action="/login"]) form[action="/login"] .input-group {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+body:has(form[action="/login"])
+  form[action="/login"]
+  .input-group
+  .form-control {
+  border-radius: 8px 0 0 8px;
+}
+
+/* Show / Hide password button */
+body:has(form[action="/login"]) #togglePassword {
+  flex-shrink: 0;
+  padding: 8px 13px;
+  color: #245b45;
+  background-color: #ffffff;
+  border: 1px solid #dce5df;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
   font-weight: 600;
-  transition: all 0.3s ease;
 }
 
-body:has(form[action="/login"]) form[action="/login"] .btn-success:hover {
+body:has(form[action="/login"]) #togglePassword:hover {
+  color: #12372a;
+  background-color: #edf4ef;
+}
+
+/* Forgot password link */
+body:has(form[action="/login"]) a[href="/forgot-password"] {
+  color: #32684c;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+body:has(form[action="/login"]) a[href="/forgot-password"]:hover {
+  color: #12372a;
+  text-decoration: underline;
+}
+
+/* Login button */
+body:has(form[action="/login"]) form[action="/login"] button[type="submit"] {
+  min-height: 44px;
+  padding: 10px 18px;
+  color: #ffffff;
+  background-color: #12372a;
+  border: 1px solid #12372a;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+body:has(form[action="/login"])
+  form[action="/login"]
+  button[type="submit"]:hover {
+  color: #ffffff;
   background-color: #1b513c;
   border-color: #1b513c;
+  box-shadow: 0 4px 12px rgba(18, 55, 42, 0.15);
+}
+
+/* Google login button */
+body:has(form[action="/login"]) a[href="/auth/google"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid #343a40;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+body:has(form[action="/login"]) a[href="/auth/google"]:hover {
   color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 12px rgba(18, 55, 42, 0.2);
+  background-color: #212529;
+}
+
+/* OR divider */
+body:has(form[action="/login"]) .card-body hr {
+  border-color: #dce5df;
+  opacity: 1;
+}
+
+/* Signup link */
+body:has(form[action="/login"]) .card-body > p a {
+  color: #32684c;
+  font-weight: 600;
+}
+
+body:has(form[action="/login"]) .card-body > p a:hover {
+  color: #12372a;
+  text-decoration: underline !important;
+}
+
+/* Form spacing */
+body:has(form[action="/login"]) form[action="/login"] .mb-3 {
+  margin-bottom: 16px !important;
+}
+
+body:has(form[action="/login"]) form[action="/login"] .mb-2 {
+  margin-bottom: 8px !important;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  body:has(form[action="/login"]) .card-body {
+    padding: 24px !important;
+  }
+
+  body:has(form[action="/login"]) h2 {
+    font-size: 25px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  body:has(form[action="/login"]) .container {
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+  }
+
+  body:has(form[action="/login"]) .card-body {
+    padding: 20px 16px !important;
+  }
+
+  body:has(form[action="/login"]) h2 {
+    font-size: 23px;
+  }
+
+  body:has(form[action="/login"]) form[action="/login"] .form-control {
+    min-height: 42px;
+    font-size: 14px;
+  }
+
+  body:has(form[action="/login"]) #togglePassword {
+    padding: 7px 10px;
+  }
+
+  body:has(form[action="/login"]) a[href="/auth/google"] {
+    font-size: 13px;
+  }
 }
 
 /* =========================================
@@ -1150,5 +1316,242 @@ body:has(form[action="/login"]) form[action="/login"] .btn-success:hover {
 
   .listing-form-card input[type="file"].form-control {
     font-size: 12px;
+  }
+}
+
+/* =========================================
+   WANDERLUST AUTHENTICATION PAGES
+   Forgot Password + Reset Password
+========================================= */
+
+.auth-page {
+  --auth-red: #fe424d;
+  --auth-red-dark: #e8323e;
+  --auth-text: #222;
+  --auth-muted: #747b86;
+  --auth-border: #e5e7eb;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72vh;
+  padding: 42px 16px 56px;
+  background:
+    radial-gradient(circle at 10% 10%, #fff0f1 0, transparent 34%),
+    radial-gradient(circle at 90% 90%, #fff4ef 0, transparent 32%), #fff;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+  padding: 38px;
+  background: #fff;
+  border: 1px solid #f0eeee;
+  border-radius: 24px;
+  box-shadow: 0 18px 55px rgba(35, 30, 30, 0.09);
+}
+
+.auth-reset-card {
+  max-width: 490px;
+}
+
+.auth-icon {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 20px;
+  border-radius: 19px;
+  background: #fff0f1;
+  color: var(--auth-red);
+  font-size: 25px;
+}
+
+.auth-eyebrow {
+  display: block;
+  margin-bottom: 9px;
+  color: var(--auth-red);
+  text-align: center;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.auth-card h2 {
+  margin: 0 0 12px;
+  color: var(--auth-text);
+  text-align: center;
+  font-size: clamp(25px, 4vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.8px;
+}
+
+.auth-description {
+  max-width: 355px;
+  margin: 0 auto 28px;
+  color: var(--auth-muted);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.auth-field {
+  margin-bottom: 22px;
+}
+
+.auth-field label {
+  display: block;
+  margin-bottom: 9px;
+  color: #343741;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.auth-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 52px;
+  padding: 0 14px;
+  border: 1px solid var(--auth-border);
+  border-radius: 12px;
+  background: #fff;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.auth-input-wrap:focus-within {
+  border-color: var(--auth-red);
+  box-shadow: 0 0 0 4px rgba(254, 66, 77, 0.09);
+}
+
+.auth-input-wrap > i {
+  flex-shrink: 0;
+  color: #9ca3af;
+  font-size: 15px;
+}
+
+.auth-input-wrap input {
+  width: 100%;
+  min-width: 0;
+  height: 50px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--auth-text);
+  font-size: 14px;
+  box-shadow: none;
+}
+
+.auth-input-wrap input::placeholder {
+  color: #a6abb4;
+}
+
+.auth-password-wrap {
+  gap: 9px;
+}
+
+.auth-toggle {
+  padding: 6px 0 6px 7px;
+  border: 0;
+  background: transparent;
+  color: var(--auth-red);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.auth-help {
+  display: block;
+  margin-top: 8px;
+  color: var(--auth-muted);
+  font-size: 12px;
+}
+
+.auth-primary-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 51px;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--auth-red);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.auth-primary-btn:hover {
+  background: var(--auth-red-dark);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(254, 66, 77, 0.2);
+}
+
+.auth-primary-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.auth-back-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  margin-top: 23px;
+  color: #454954;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.auth-back-link:hover {
+  color: var(--auth-red);
+}
+
+.auth-security-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 27px;
+  padding-top: 18px;
+  border-top: 1px solid #f0f0f0;
+  color: #8b919b;
+  text-align: center;
+  font-size: 11px;
+}
+
+.auth-security-note i {
+  color: #26976b;
+}
+
+@media (max-width: 480px) {
+  .auth-page {
+    min-height: auto;
+    padding: 28px 12px 38px;
+  }
+
+  .auth-card {
+    padding: 28px 20px;
+    border-radius: 19px;
+  }
+
+  .auth-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    font-size: 22px;
   }
 }

@@ -9,6 +9,8 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
+    lowercase: true,
+    trim: true,
   },
 
   googleId: {
@@ -17,7 +19,7 @@ const userSchema = new Schema({
     sparse: true,
   },
 
-  // Email verification fields
+  // Email verification
   isEmailVerified: {
     type: Boolean,
     default: false,
@@ -29,6 +31,17 @@ const userSchema = new Schema({
   },
 
   emailVerificationExpires: {
+    type: Date,
+    default: undefined,
+  },
+
+  // Password reset
+  passwordResetToken: {
+    type: String,
+    default: undefined,
+  },
+
+  passwordResetExpires: {
     type: Date,
     default: undefined,
   },
