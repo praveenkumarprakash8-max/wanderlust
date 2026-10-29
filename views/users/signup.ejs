@@ -27,7 +27,6 @@
           <div class="signup-icon">
             <i class="fa-regular fa-compass" aria-hidden="true"></i>
           </div>
-
           <p class="signup-eyebrow">START YOUR JOURNEY</p>
           <h1>Join Wanderlust</h1>
         </div>
@@ -42,10 +41,8 @@
           <!-- Username -->
           <div class="signup-field">
             <label for="username">Username</label>
-
             <div class="signup-input-wrap">
               <i class="fa-regular fa-user" aria-hidden="true"></i>
-
               <input
                 name="username"
                 id="username"
@@ -54,7 +51,6 @@
                 autocomplete="username"
                 required
               />
-
               <div class="invalid-feedback">Please enter a username.</div>
             </div>
           </div>
@@ -62,10 +58,8 @@
           <!-- Email -->
           <div class="signup-field">
             <label for="email">Email</label>
-
             <div class="signup-input-wrap">
               <i class="fa-regular fa-envelope" aria-hidden="true"></i>
-
               <input
                 name="email"
                 id="email"
@@ -74,7 +68,6 @@
                 autocomplete="email"
                 required
               />
-
               <div class="invalid-feedback">Please enter a valid email.</div>
             </div>
           </div>
@@ -95,6 +88,7 @@
                 required
               />
 
+              <!-- Eye icon: same as login, without a box -->
               <button
                 type="button"
                 id="togglePassword"
@@ -103,43 +97,7 @@
                 aria-controls="password"
                 aria-pressed="false"
               >
-                <svg
-                  id="eyeOpen"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="17"
-                  height="17"
-                  fill="currentColor"
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"
-                  />
-                  <path
-                    d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
-                  />
-                </svg>
-
-                <svg
-                  id="eyeClosed"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="17"
-                  height="17"
-                  fill="currentColor"
-                  viewBox="0 0 16 16"
-                  style="display: none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"
-                  />
-                  <path
-                    d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"
-                  />
-                  <path
-                    d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"
-                  />
-                </svg>
+                <i class="fa-regular fa-eye" aria-hidden="true"></i>
               </button>
 
               <div class="invalid-feedback">Please enter a password.</div>
@@ -183,9 +141,7 @@
 </div>
 
 <style>
-  /* =====================================
-     WANDERLUST COMPACT SIGNUP PAGE
-  ===================================== */
+  /* WANDERLUST SIGNUP PAGE */
 
   .signup-page,
   .signup-page * {
@@ -239,14 +195,12 @@
     min-width: 0;
     min-height: 0;
     height: auto;
-
     margin: 0 auto;
     padding: 20px 24px;
 
     border: 1px solid #f0edf0;
     border-radius: 20px;
     background: #fff;
-
     box-shadow: 0 10px 32px rgba(35, 30, 40, 0.07);
   }
 
@@ -255,9 +209,7 @@
     display: inline-flex;
     align-items: center;
     gap: 7px;
-
     margin-bottom: 12px;
-
     color: #596273;
     font-size: 12px;
     font-weight: 600;
@@ -277,11 +229,9 @@
   .signup-page .signup-icon {
     display: grid;
     place-items: center;
-
     width: 48px;
     height: 48px;
     margin: 0 auto 10px;
-
     border-radius: 50%;
     background: #fff0f1;
     color: var(--signup-red);
@@ -308,7 +258,7 @@
     letter-spacing: -0.6px;
   }
 
-  /* Form */
+  /* Form fields */
   .signup-page .signup-field {
     margin-bottom: 13px;
   }
@@ -316,7 +266,6 @@
   .signup-page .signup-field label {
     display: block;
     margin-bottom: 6px;
-
     color: #303644;
     font-size: 12px;
     font-weight: 700;
@@ -324,7 +273,6 @@
 
   .signup-page .signup-input-wrap {
     position: relative;
-
     display: flex;
     align-items: center;
     gap: 10px;
@@ -377,7 +325,7 @@
     opacity: 1;
   }
 
-  /* Validation feedback */
+  /* Validation */
   .signup-page .invalid-feedback {
     font-size: 11px;
   }
@@ -388,28 +336,61 @@
     left: 0;
   }
 
-  .signup-page .signup-input-wrap:has(input:invalid:not(:placeholder-shown)) {
-    margin-bottom: 0;
-  }
-
-  /* Password visibility */
-  .signup-page .signup-toggle {
-    flex-shrink: 0;
-    display: grid;
-    place-items: center;
-
-    width: 27px;
-    height: 30px;
+  /* Eye icon only — matching login's grey color */
+  .signup-page .signup-input-wrap .signup-toggle {
+    flex: 0 0 24px;
+    width: 24px;
+    min-width: 24px;
+    height: 36px;
+    margin: 0 -4px 0 0;
     padding: 0;
 
-    border: 0;
-    background: transparent;
-    color: var(--signup-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+
+    color: #8993a3 !important;
     cursor: pointer;
+    outline: none;
+    line-height: 1;
+
+    appearance: none;
+    -webkit-appearance: none;
+    transition: color 0.2s ease;
   }
 
-  .signup-page .signup-toggle:hover {
-    color: var(--signup-red);
+  .signup-page .signup-input-wrap .signup-toggle i {
+    display: block;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    font-size: 18px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  /* Keep the eye grey on hover — not red */
+  .signup-page .signup-input-wrap .signup-toggle:hover,
+  .signup-page .signup-input-wrap .signup-toggle:active {
+    color: #8993a3 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .signup-page .signup-toggle:focus {
+    outline: none;
+  }
+
+  .signup-page .signup-toggle:focus-visible {
+    outline: 2px solid rgba(137, 147, 163, 0.4);
+    outline-offset: 2px;
   }
 
   /* Primary button */
@@ -432,8 +413,8 @@
     font-family: inherit;
     font-size: 13px;
     font-weight: 700;
-
     cursor: pointer;
+
     transition:
       transform 0.2s,
       box-shadow 0.2s;
@@ -501,16 +482,15 @@
     font-size: 15px;
   }
 
-  /* Existing account */
+  /* Login link */
   .signup-page .signup-login {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 5px;
-
     margin-top: 15px;
 
-    color: var(--signup-muted, #818b9d);
+    color: var(--signup-muted);
     font-size: 12px;
     line-height: 1.5;
     text-align: center;
@@ -532,8 +512,8 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-
     margin-top: 12px;
+
     color: #8993a3;
     font-size: 10px;
     text-align: center;
@@ -576,25 +556,28 @@
   (() => {
     const form = document.querySelector(".signup-form");
     const passwordInput = document.getElementById("password");
-    const toggleBtn = document.getElementById("togglePassword");
-    const eyeOpen = document.getElementById("eyeOpen");
-    const eyeClosed = document.getElementById("eyeClosed");
+    const togglePassword = document.getElementById("togglePassword");
 
-    if (toggleBtn && passwordInput && eyeOpen && eyeClosed) {
-      toggleBtn.addEventListener("click", () => {
-        const isHidden = passwordInput.type === "password";
+    if (passwordInput && togglePassword) {
+      const eyeIcon = togglePassword.querySelector("i");
 
-        passwordInput.type = isHidden ? "text" : "password";
-        eyeOpen.style.display = isHidden ? "none" : "inline";
-        eyeClosed.style.display = isHidden ? "inline" : "none";
+      if (eyeIcon) {
+        togglePassword.addEventListener("click", () => {
+          const showPassword = passwordInput.type === "password";
 
-        toggleBtn.setAttribute(
-          "aria-label",
-          isHidden ? "Hide password" : "Show password",
-        );
+          passwordInput.type = showPassword ? "text" : "password";
 
-        toggleBtn.setAttribute("aria-pressed", String(isHidden));
-      });
+          eyeIcon.classList.toggle("fa-eye", !showPassword);
+          eyeIcon.classList.toggle("fa-eye-slash", showPassword);
+
+          togglePassword.setAttribute(
+            "aria-label",
+            showPassword ? "Hide password" : "Show password",
+          );
+
+          togglePassword.setAttribute("aria-pressed", String(showPassword));
+        });
+      }
     }
 
     if (form) {

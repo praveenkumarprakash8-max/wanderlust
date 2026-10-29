@@ -34,6 +34,7 @@
             </div>
           </div>
 
+          <!-- Password -->
           <div class="login-field">
             <label for="password">Password</label>
 
@@ -49,6 +50,7 @@
                 required
               />
 
+              <!-- Eye Toggle -->
               <button
                 type="button"
                 id="togglePassword"
@@ -57,7 +59,7 @@
                 aria-controls="password"
                 aria-pressed="false"
               >
-                Show
+                <i class="fa-regular fa-eye" aria-hidden="true"></i>
               </button>
             </div>
           </div>
@@ -287,23 +289,61 @@
     opacity: 1;
   }
 
-  /* Password toggle */
-  .login-page .login-toggle {
-    flex-shrink: 0;
-    padding: 6px 0 6px 6px;
+  /* Eye toggle: same appearance as signup */
+  .login-page .login-input-wrap .login-toggle {
+    flex: 0 0 24px;
+    width: 24px;
+    min-width: 24px;
+    height: 36px;
+    margin: 0 -4px 0 0;
+    padding: 0;
 
-    border: 0;
-    background: transparent;
-    color: var(--login-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    font-family: inherit;
-    font-size: 11px;
-    font-weight: 700;
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+
+    color: #8993a3 !important;
     cursor: pointer;
+    outline: none;
+    line-height: 1;
+
+    appearance: none;
+    -webkit-appearance: none;
+    transition: color 0.2s ease;
   }
 
-  .login-page .login-toggle:hover {
-    color: var(--login-red-dark);
+  .login-page .login-input-wrap .login-toggle i {
+    display: block;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    font-size: 18px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  /* Keep eye grey on hover and active */
+  .login-page .login-input-wrap .login-toggle:hover,
+  .login-page .login-input-wrap .login-toggle:active {
+    color: #8993a3 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .login-page .login-input-wrap .login-toggle:focus {
+    outline: none;
+  }
+
+  .login-page .login-input-wrap .login-toggle:focus-visible {
+    outline: 2px solid rgba(137, 147, 163, 0.4);
+    outline-offset: 2px;
   }
 
   /* Forgot password */
@@ -396,7 +436,7 @@
 
     border: 1px solid #dfe4ed !important;
     border-radius: 32px !important;
-    background: #ffffff !important;
+    background: #fff !important;
     color: #303644 !important;
 
     font-family: inherit;
@@ -410,21 +450,20 @@
       color 0.2s ease;
   }
 
-  /* Google button hover */
   .login-page a.google-login:hover,
   .login-page a.google-login:focus,
   .login-page a.google-login:active {
     background: #8a8a8a !important;
     background-color: #8a8a8a !important;
     border-color: #c8cfda !important;
-    color: #ffffff !important;
+    color: #fff !important;
     text-decoration: none !important;
   }
 
   .login-page a.google-login:hover span,
   .login-page a.google-login:focus span,
   .login-page a.google-login:active span {
-    color: #ffffff !important;
+    color: #fff !important;
   }
 
   .login-page a.google-login i {
@@ -520,11 +559,17 @@
 
     if (!passwordInput || !togglePassword) return;
 
+    const eyeIcon = togglePassword.querySelector("i");
+
+    if (!eyeIcon) return;
+
     togglePassword.addEventListener("click", () => {
       const showPassword = passwordInput.type === "password";
 
       passwordInput.type = showPassword ? "text" : "password";
-      togglePassword.textContent = showPassword ? "Hide" : "Show";
+
+      eyeIcon.classList.toggle("fa-eye", !showPassword);
+      eyeIcon.classList.toggle("fa-eye-slash", showPassword);
 
       togglePassword.setAttribute(
         "aria-label",
