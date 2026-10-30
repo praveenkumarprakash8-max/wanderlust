@@ -38,7 +38,6 @@ router.get(
 router.post("/reset-password/:token", wrapAsync(userController.resetPassword));
 
 // LOGIN WITH USERNAME OR EMAIL
-
 router
   .route("/login")
   .get(userController.renderLoginForm)
@@ -72,12 +71,9 @@ router
 
       console.log("[LOGIN] User found:", Boolean(loginUser));
       console.log("[LOGIN] Email verified:", loginUser?.isEmailVerified);
-      console.log("[LOGIN] Password received:", Boolean(req.body.password));
       console.log(
-        "[LOGIN] Password length:",
-        typeof req.body.password === "string"
-          ? req.body.password.length
-          : "Invalid",
+        "[LOGIN] Password received:",
+        typeof req.body.password === "string" && req.body.password.length > 0,
       );
 
       console.log("[LOGIN] Passport authentication started");
@@ -88,7 +84,9 @@ router
         console.log("[LOGIN] Passport message:", info?.message || "No message");
         console.log("========== LOGIN DEBUG END ==========\n");
 
-        if (err) return next(err);
+        if (err) {
+          return next(err);
+        }
 
         if (!user) {
           req.flash(
@@ -103,13 +101,24 @@ router
           return res.redirect("/verify-email");
         }
 
+        // CREATE LOGIN SESSION
+        console.log("[LOGIN] Calling req.logIn()");
+
         req.logIn(user, (loginErr) => {
-          if (loginErr) return next(loginErr);
+          if (loginErr) {
+            console.error("[LOGIN] Session login error:", loginErr);
+            return next(loginErr);
+          }
+
+          console.log("[LOGIN] req.logIn completed successfully");
+          console.log("[LOGIN] Session user ID:", req.user?._id);
+          console.log("[LOGIN] Is authenticated:", req.isAuthenticated());
+
           return userController.login(req, res, next);
         });
       })(req, res, next);
     } catch (err) {
-      console.error("[LOGIN] Route error:", err.message);
+      console.error("[LOGIN] Route error:", err);
       return next(err);
     }
   });
