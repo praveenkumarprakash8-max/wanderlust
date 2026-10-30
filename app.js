@@ -50,8 +50,9 @@ const store = MongoStore.create({
   touchAfter: 24 * 3600,
 });
 
-store.on("error", () => {
-  console.log("Error in MONGO SESSION STORE", err);
+// FIX 1: Correct error parameter
+store.on("error", (err) => {
+  console.error("Error in MONGO SESSION STORE:", err);
 });
 
 const sessionOption = {
@@ -60,7 +61,8 @@ const sessionOption = {
   resave: false,
   saveUninitialized: true,
   cookie: {
-    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    // FIX 2: Use a Date object for expires
+    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
     maxAge: 7 * 24 * 60 * 60 * 1000,
     httpOnly: true,
   },
@@ -71,7 +73,9 @@ app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 passport.use(new LocalStrategy(User.authenticate()));
+
 passport.use(
   new GoogleStrategy(
     {
@@ -96,13 +100,19 @@ passport.use(
         }
 
         user = await User.findOne({ email });
+
         if (user) {
           user.googleId = profile.id;
           await user.save();
           return done(null, user);
         }
 
-        user = new User({ email, username: email, googleId: profile.id });
+        user = new User({
+          email,
+          username: email,
+          googleId: profile.id,
+        });
+
         await user.save();
         return done(null, user);
       } catch (err) {
