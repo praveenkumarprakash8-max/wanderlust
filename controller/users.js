@@ -295,7 +295,6 @@ module.exports.renderResetPassword = async (req, res, next) => {
   }
 };
 
-// RESET PASSWORD
 module.exports.resetPassword = async (req, res, next) => {
   try {
     console.log("[RESET] Request received");
@@ -303,7 +302,6 @@ module.exports.resetPassword = async (req, res, next) => {
     const { password, confirmPassword } = req.body;
     const token = req.params.token;
 
-    // Validate password
     if (
       typeof password !== "string" ||
       typeof confirmPassword !== "string" ||
@@ -311,17 +309,14 @@ module.exports.resetPassword = async (req, res, next) => {
       password.length > 128
     ) {
       req.flash("error", "Password must be between 8 and 128 characters.");
-
       return res.redirect(`/reset-password/${encodeURIComponent(token)}`);
     }
 
     if (password !== confirmPassword) {
       req.flash("error", "Passwords do not match.");
-
       return res.redirect(`/reset-password/${encodeURIComponent(token)}`);
     }
 
-    // Validate reset token
     console.log("[RESET] Validating token");
 
     const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
@@ -338,27 +333,37 @@ module.exports.resetPassword = async (req, res, next) => {
       return res.redirect("/forgot-password");
     }
 
-    // Check existing credentials without printing their values
+    console.log("[RESET] Before setPassword");
+
     const oldHash = user.hash;
     const oldSalt = user.salt;
 
-    console.log("[RESET] Before setPassword");
-
-    // Generate new password hash and salt
     await user.setPassword(password);
 
     console.log("[RESET] setPassword completed");
     console.log("[RESET] Hash changed:", oldHash !== user.hash);
     console.log("[RESET] Salt changed:", oldSalt !== user.salt);
 
-    // Clear reset token after password update
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
 
-    // Save updated user
     await user.save();
 
     console.log("[RESET] User saved successfully");
+
+    // DATABASE PERSISTENCE CHECK
+    const savedUser = await User.findById(user._id);
+
+    console.log("[RESET CHECK] User found after save:", Boolean(savedUser));
+
+    console.log("[RESET CHECK] Hash persisted:", savedUser?.hash === user.hash);
+
+    console.log("[RESET CHECK] Salt persisted:", savedUser?.salt === user.salt);
+
+    console.log(
+      "[RESET CHECK] Username persisted:",
+      savedUser?.username === user.username,
+    );
 
     req.flash(
       "success",
