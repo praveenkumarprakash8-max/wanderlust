@@ -295,6 +295,7 @@ module.exports.renderResetPassword = async (req, res, next) => {
   }
 };
 
+// RESET PASSWORD
 module.exports.resetPassword = async (req, res, next) => {
   try {
     console.log("[RESET] Request received");
@@ -309,11 +310,13 @@ module.exports.resetPassword = async (req, res, next) => {
       password.length > 128
     ) {
       req.flash("error", "Password must be between 8 and 128 characters.");
+
       return res.redirect(`/reset-password/${encodeURIComponent(token)}`);
     }
 
     if (password !== confirmPassword) {
       req.flash("error", "Passwords do not match.");
+
       return res.redirect(`/reset-password/${encodeURIComponent(token)}`);
     }
 
@@ -330,6 +333,7 @@ module.exports.resetPassword = async (req, res, next) => {
 
     if (!user) {
       req.flash("error", "This reset link is invalid or has expired.");
+
       return res.redirect("/forgot-password");
     }
 
@@ -352,13 +356,19 @@ module.exports.resetPassword = async (req, res, next) => {
     console.log("[RESET] User saved successfully");
 
     // DATABASE PERSISTENCE CHECK
-    const savedUser = await User.findById(user._id);
+    const savedUser = await User.findById(user._id).select("+hash +salt");
 
     console.log("[RESET CHECK] User found after save:", Boolean(savedUser));
 
-    console.log("[RESET CHECK] Hash persisted:", savedUser?.hash === user.hash);
+    console.log(
+      "[RESET CHECK] Hash persisted:",
+      Boolean(savedUser?.hash) && savedUser.hash === user.hash,
+    );
 
-    console.log("[RESET CHECK] Salt persisted:", savedUser?.salt === user.salt);
+    console.log(
+      "[RESET CHECK] Salt persisted:",
+      Boolean(savedUser?.salt) && savedUser.salt === user.salt,
+    );
 
     console.log(
       "[RESET CHECK] Username persisted:",
