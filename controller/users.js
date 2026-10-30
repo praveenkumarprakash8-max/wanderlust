@@ -284,7 +284,6 @@ module.exports.renderResetPassword = async (req, res, next) => {
 
     if (!user) {
       req.flash("error", "This reset link is invalid or has expired.");
-
       return res.redirect("/forgot-password");
     }
 
@@ -322,7 +321,7 @@ module.exports.resetPassword = async (req, res, next) => {
       return res.redirect(`/reset-password/${encodeURIComponent(token)}`);
     }
 
-    // Find valid reset token
+    // Validate reset token
     console.log("[RESET] Validating token");
 
     const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
@@ -336,21 +335,27 @@ module.exports.resetPassword = async (req, res, next) => {
 
     if (!user) {
       req.flash("error", "This reset link is invalid or has expired.");
-
       return res.redirect("/forgot-password");
     }
 
-    // passport-local-mongoose v9 uses a Promise-based method.
-    console.log("[RESET] Calling setPassword");
+    // Check existing credentials without printing their values
+    const oldHash = user.hash;
+    const oldSalt = user.salt;
 
+    console.log("[RESET] Before setPassword");
+
+    // Generate new password hash and salt
     await user.setPassword(password);
 
     console.log("[RESET] setPassword completed");
+    console.log("[RESET] Hash changed:", oldHash !== user.hash);
+    console.log("[RESET] Salt changed:", oldSalt !== user.salt);
 
-    // Clear token only after password hashing succeeds.
+    // Clear reset token after password update
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
 
+    // Save updated user
     await user.save();
 
     console.log("[RESET] User saved successfully");
@@ -362,8 +367,7 @@ module.exports.resetPassword = async (req, res, next) => {
 
     return res.redirect("/login");
   } catch (err) {
-    console.error("[RESET] Password reset error:", err);
-
+    console.error("[RESET] Password reset error:", err.message);
     return next(err);
   }
 };
