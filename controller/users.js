@@ -343,6 +343,12 @@ module.exports.resetPassword = async (req, res, next) => {
     const oldSalt = user.salt;
 
     await user.setPassword(password);
+    const authResult = await user.authenticate(password);
+
+    console.log(
+      "[RESET CHECK] New password matches:",
+      Boolean(authResult?.user),
+    );
 
     console.log("[RESET] setPassword completed");
     console.log("[RESET] Hash changed:", oldHash !== user.hash);
