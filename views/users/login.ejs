@@ -108,9 +108,7 @@
 </div>
 
 <style>
-  /* ===================================
-     WANDERLUST COMPACT LOGIN PAGE
-  =================================== */
+  /* WANDERLUST LOGIN PAGE */
 
   .login-page,
   .login-page * {
@@ -131,7 +129,7 @@
     min-height: 0 !important;
     height: auto !important;
     margin: 0 !important;
-    padding: 12px !important;
+    padding: 8px 12px !important;
 
     display: flex;
     justify-content: center;
@@ -156,6 +154,7 @@
     width: 100%;
     max-width: 424px;
     padding: 0;
+    margin: 0 auto;
   }
 
   /* Card */
@@ -167,25 +166,25 @@
     height: auto !important;
 
     margin: 0 auto;
-    padding: 20px 24px;
+    padding: 17px 23px;
 
     border: 1px solid #f0edf0;
     border-radius: 20px;
     background: #fff;
 
-    box-shadow: 0 10px 32px rgba(35, 30, 40, 0.07);
+    box-shadow: 0 8px 25px rgba(35, 30, 40, 0.06);
   }
 
   /* Header */
   .login-page .login-header {
-    margin: 0 0 20px;
+    margin: 0 0 14px;
     text-align: center;
   }
 
   .login-page .login-icon {
-    width: 48px;
-    height: 48px;
-    margin: 0 auto 10px;
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 8px;
 
     display: grid;
     place-items: center;
@@ -196,11 +195,11 @@
   }
 
   .login-page .login-icon i {
-    font-size: 23px;
+    font-size: 21px;
   }
 
   .login-page .login-eyebrow {
-    margin: 0 0 6px;
+    margin: 0 0 5px;
     color: var(--login-red);
     font-size: 10px;
     font-weight: 800;
@@ -208,9 +207,9 @@
   }
 
   .login-page .login-header h1 {
-    margin: 0 0 6px;
+    margin: 0 0 5px;
     color: var(--login-text);
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 800;
     line-height: 1.2;
     letter-spacing: -0.7px;
@@ -225,12 +224,12 @@
 
   /* Input fields */
   .login-page .login-field {
-    margin-bottom: 13px;
+    margin-bottom: 10px;
   }
 
   .login-page .login-field label {
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
     color: #303644;
     font-size: 12px;
     font-weight: 700;
@@ -243,7 +242,7 @@
 
     width: 100%;
     min-width: 0;
-    height: 44px;
+    height: 42px;
     padding: 0 12px;
 
     border: 1px solid var(--login-border);
@@ -289,7 +288,7 @@
     opacity: 1;
   }
 
-  /* Eye toggle: same appearance as signup */
+  /* Eye toggle */
   .login-page .login-input-wrap .login-toggle {
     flex: 0 0 24px;
     width: 24px;
@@ -327,7 +326,6 @@
     pointer-events: none;
   }
 
-  /* Keep eye grey on hover and active */
   .login-page .login-input-wrap .login-toggle:hover,
   .login-page .login-input-wrap .login-toggle:active {
     color: #8993a3 !important;
@@ -350,7 +348,7 @@
   .login-page .login-forgot {
     display: flex;
     justify-content: flex-end;
-    margin: 0 0 14px;
+    margin: 0 0 11px;
   }
 
   .login-page .login-forgot a {
@@ -373,8 +371,8 @@
     gap: 10px;
 
     width: 100%;
-    min-height: 43px;
-    padding: 9px 14px;
+    min-height: 41px;
+    padding: 8px 14px;
 
     border: 0;
     border-radius: 12px;
@@ -406,7 +404,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    margin: 15px 0;
+    margin: 12px 0;
   }
 
   .login-page .login-divider span {
@@ -431,7 +429,7 @@
     gap: 9px;
 
     width: 100%;
-    min-height: 42px;
+    min-height: 40px;
     padding: 8px 12px;
 
     border: 1px solid #dfe4ed !important;
@@ -473,7 +471,7 @@
 
   /* Signup */
   .login-page .login-signup {
-    margin: 15px 0 0;
+    margin: 12px 0 0;
     color: var(--login-muted);
     text-align: center;
     font-size: 12px;
@@ -498,7 +496,7 @@
     justify-content: center;
     gap: 6px;
 
-    margin-top: 12px;
+    margin-top: 9px;
     color: #8993a3;
     font-size: 10px;
     text-align: center;
@@ -511,7 +509,7 @@
 
   /* Footer */
   .login-page .login-footer {
-    margin: 12px 0 0;
+    margin: 9px 0 0;
     color: #a1a6b0;
     text-align: center;
     font-size: 9px;
@@ -533,7 +531,7 @@
   /* Mobile */
   @media (max-width: 575.98px) {
     .login-page {
-      padding: 10px !important;
+      padding: 8px 10px !important;
     }
 
     .login-page > .row > .col-12 {
@@ -542,12 +540,30 @@
 
     .login-page .login-card {
       max-width: 100%;
-      padding: 20px 17px;
+      padding: 17px 16px;
       border-radius: 17px;
     }
 
+    .login-page .login-header {
+      margin-bottom: 13px;
+    }
+
     .login-page .login-header h1 {
-      font-size: 25px;
+      font-size: 24px;
+    }
+
+    .login-page .login-field {
+      margin-bottom: 10px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .login-page .login-card {
+      padding: 16px 13px;
+    }
+
+    .login-page .login-header h1 {
+      font-size: 23px;
     }
   }
 </style>

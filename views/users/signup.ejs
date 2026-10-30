@@ -75,7 +75,6 @@
           <!-- Password -->
           <div class="signup-field">
             <label for="password">Password</label>
-
             <div class="signup-input-wrap">
               <i class="fa-solid fa-lock" aria-hidden="true"></i>
 
@@ -88,7 +87,6 @@
                 required
               />
 
-              <!-- Eye icon: same as login, without a box -->
               <button
                 type="button"
                 id="togglePassword"
@@ -150,7 +148,6 @@
 
   .signup-page {
     --signup-red: #fe424d;
-    --signup-red-dark: #e8323e;
     --signup-text: #252832;
     --signup-muted: #818b9d;
     --signup-border: #dfe4ed;
@@ -160,11 +157,11 @@
     min-height: 0 !important;
     height: auto !important;
     margin: 0 !important;
-    padding: 12px !important;
+    padding: 8px 12px !important;
 
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 
     background:
       radial-gradient(
@@ -193,15 +190,15 @@
     width: 100%;
     max-width: 400px;
     min-width: 0;
-    min-height: 0;
     height: auto;
+    min-height: 0;
     margin: 0 auto;
-    padding: 20px 24px;
+    padding: 17px 23px;
 
     border: 1px solid #f0edf0;
     border-radius: 20px;
     background: #fff;
-    box-shadow: 0 10px 32px rgba(35, 30, 40, 0.07);
+    box-shadow: 0 8px 25px rgba(35, 30, 40, 0.06);
   }
 
   /* Back link */
@@ -209,7 +206,7 @@
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    margin-bottom: 12px;
+    margin-bottom: 9px;
     color: #596273;
     font-size: 12px;
     font-weight: 600;
@@ -222,27 +219,27 @@
 
   /* Header */
   .signup-page .signup-header {
-    margin: 0 0 20px;
+    margin: 0 0 14px;
     text-align: center;
   }
 
   .signup-page .signup-icon {
     display: grid;
     place-items: center;
-    width: 48px;
-    height: 48px;
-    margin: 0 auto 10px;
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 8px;
     border-radius: 50%;
     background: #fff0f1;
     color: var(--signup-red);
   }
 
   .signup-page .signup-icon i {
-    font-size: 23px;
+    font-size: 21px;
   }
 
   .signup-page .signup-eyebrow {
-    margin: 0 0 6px;
+    margin: 0 0 5px;
     color: var(--signup-red);
     font-size: 10px;
     font-weight: 800;
@@ -252,20 +249,20 @@
   .signup-page .signup-header h1 {
     margin: 0;
     color: var(--signup-text);
-    font-size: 27px;
+    font-size: 26px;
     font-weight: 800;
-    line-height: 1.25;
+    line-height: 1.2;
     letter-spacing: -0.6px;
   }
 
   /* Form fields */
   .signup-page .signup-field {
-    margin-bottom: 13px;
+    margin-bottom: 10px;
   }
 
   .signup-page .signup-field label {
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
     color: #303644;
     font-size: 12px;
     font-weight: 700;
@@ -279,7 +276,7 @@
 
     width: 100%;
     min-width: 0;
-    height: 44px;
+    height: 42px;
     padding: 0 12px;
 
     border: 1px solid var(--signup-border);
@@ -336,7 +333,7 @@
     left: 0;
   }
 
-  /* Eye icon only — matching login's grey color */
+  /* Password eye toggle */
   .signup-page .signup-input-wrap .signup-toggle {
     flex: 0 0 24px;
     width: 24px;
@@ -374,7 +371,6 @@
     pointer-events: none;
   }
 
-  /* Keep the eye grey on hover — not red */
   .signup-page .signup-input-wrap .signup-toggle:hover,
   .signup-page .signup-input-wrap .signup-toggle:active {
     color: #8993a3 !important;
@@ -401,9 +397,9 @@
     gap: 10px;
 
     width: 100%;
-    min-height: 43px;
-    margin-top: 4px;
-    padding: 9px 14px;
+    min-height: 41px;
+    margin-top: 3px;
+    padding: 8px 14px;
 
     border: 0;
     border-radius: 12px;
@@ -431,7 +427,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    margin: 15px 0;
+    margin: 12px 0;
   }
 
   .signup-page .signup-divider span {
@@ -454,7 +450,7 @@
     gap: 9px;
 
     width: 100%;
-    min-height: 42px;
+    min-height: 40px;
     padding: 8px 12px;
 
     border: 1px solid var(--signup-border);
@@ -473,8 +469,8 @@
 
   .signup-page .signup-google:hover {
     border-color: #c8cfda;
-    background: #898989;
-    color: #edeff5;
+    background: #f7f8fa;
+    color: #303644;
   }
 
   .signup-page .signup-google i {
@@ -488,7 +484,7 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 5px;
-    margin-top: 15px;
+    margin-top: 12px;
 
     color: var(--signup-muted);
     font-size: 12px;
@@ -512,7 +508,7 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    margin-top: 12px;
+    margin-top: 9px;
 
     color: #8993a3;
     font-size: 10px;
@@ -533,7 +529,8 @@
   /* Mobile */
   @media (max-width: 575.98px) {
     .signup-page {
-      padding: 10px !important;
+      padding: 8px 10px !important;
+      align-items: flex-start;
     }
 
     .signup-page > .row > .col-12 {
@@ -542,12 +539,30 @@
 
     .signup-page .signup-card {
       max-width: 100%;
-      padding: 20px 17px;
+      padding: 17px 16px;
       border-radius: 17px;
     }
 
+    .signup-page .signup-header {
+      margin-bottom: 13px;
+    }
+
     .signup-page .signup-header h1 {
-      font-size: 25px;
+      font-size: 24px;
+    }
+
+    .signup-page .signup-field {
+      margin-bottom: 10px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .signup-page .signup-card {
+      padding: 16px 13px;
+    }
+
+    .signup-page .signup-header h1 {
+      font-size: 23px;
     }
   }
 </style>
