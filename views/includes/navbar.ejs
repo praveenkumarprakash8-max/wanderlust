@@ -355,7 +355,7 @@
 <nav class="navbar bg-white border-bottom main-navbar">
   <div class="container-fluid">
 
-    <!-- Desktop navbar -->
+    <!-- Desktop navbar: unchanged -->
     <div class="desktop-navbar">
       <a class="brand-wrap" href="/">
         <span class="brand-logo">W</span>
@@ -416,7 +416,7 @@
       </div>
     </div>
 
-    <!-- Mobile navbar -->
+    <!-- Mobile navbar: profile replaces hamburger -->
     <div class="mobile-navbar">
       <a class="brand-wrap" href="/">
         <span class="brand-logo">W</span>
@@ -521,9 +521,7 @@
   (() => {
     const searchToggle = document.getElementById("mobileSearchToggle");
     const searchPanel = document.getElementById("mobileSearchPanel");
-    const navbar = document.querySelector(".main-navbar");
 
-    // Toggle the mobile search panel
     if (searchToggle && searchPanel) {
       searchToggle.addEventListener("click", () => {
         const isOpen = searchPanel.classList.toggle("is-open");
@@ -540,52 +538,5 @@
         }
       });
     }
-
-    // Close open search and profile menus whenever the page scrolls
-    let scrollCloseScheduled = false;
-
-    window.addEventListener(
-      "scroll",
-      () => {
-        if (scrollCloseScheduled) return;
-
-        scrollCloseScheduled = true;
-
-        window.requestAnimationFrame(() => {
-          scrollCloseScheduled = false;
-
-          // Close mobile search panel
-          if (searchPanel && searchPanel.classList.contains("is-open")) {
-            searchPanel.classList.remove("is-open");
-
-            if (searchToggle) {
-              searchToggle.setAttribute("aria-expanded", "false");
-              searchToggle.setAttribute("aria-label", "Open search");
-            }
-          }
-
-          // Close any open Bootstrap dropdown inside the navbar
-          if (navbar) {
-            navbar.querySelectorAll(".dropdown-menu.show").forEach((menu) => {
-              const dropdown = menu.closest(".dropdown");
-              const toggle = dropdown?.querySelector(
-                '[data-bs-toggle="dropdown"]'
-              );
-
-              if (toggle && window.bootstrap?.Dropdown) {
-                window.bootstrap.Dropdown
-                  .getOrCreateInstance(toggle)
-                  .hide();
-              } else {
-                menu.classList.remove("show");
-                toggle?.classList.remove("show");
-                toggle?.setAttribute("aria-expanded", "false");
-              }
-            });
-          }
-        });
-      },
-      { passive: true }
-    );
   })();
 </script>
