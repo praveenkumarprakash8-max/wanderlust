@@ -1,354 +1,137 @@
 <% layout("/layouts/auth") %>
 
-<div class="container verify-page">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-8 col-lg-6">
-      <div class="verify-card">
-        <!-- Email Icon -->
-        <div class="verify-icon">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="42"
-            height="42"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.8"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-            <path d="m3 7 9 6 9-6"></path>
-          </svg>
-
-          <span class="verify-check">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="m5 12 4 4L19 6"></path>
-            </svg>
-          </span>
-        </div>
-
-        <!-- Badge -->
-        <span class="verify-badge">
-          <span class="security-dot"></span>
-          ACCOUNT SECURITY
-        </span>
-
-        <!-- Heading -->
-        <h1>Verify your email</h1>
-
-        <p class="verify-subtitle">
-          You're just one step away from joining Wanderlust. Verify your email
-          address to get started.
-        </p>
-
-        <!-- Instructions -->
-        <div class="verify-info">
-          <div class="info-icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-              <path d="m3 7 9 6 9-6"></path>
-            </svg>
-          </div>
-
-          <div class="info-content">
-            <h5>Check your inbox</h5>
-            <p>
-              Open the verification email we sent you and click the verification
-              link to activate your account.
-            </p>
-          </div>
-        </div>
-
-        <!-- Helpful Tip -->
-        <div class="verify-tip">
-          <span class="tip-icon">i</span>
-          <span>
-            Can't find the email? Check your Spam or Promotions folder.
-          </span>
-        </div>
-
-        <!-- Resend Verification -->
-        <div class="resend-section">
-          <h5 class="resend-heading">Still haven't received the email?</h5>
-
-          <form action="/resend-verification" method="POST">
-            <div class="verify-input-wrap">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="19"
-                height="19"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-                <path d="m3 7 9 6 9-6"></path>
-              </svg>
-
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter your email address"
-                autocomplete="email"
-                class="form-control verify-input"
-                aria-label="Email address"
-                required
-              />
-            </div>
-
-            <button type="submit" class="verify-button">
-              Resend verification email
-              <span aria-hidden="true">→</span>
-            </button>
-          </form>
-        </div>
-
-        <!-- Footer -->
-        <div class="verify-footer">
-          <a href="/login" class="back-login">
-            <span>←</span>
-            Back to Login
-          </a>
-
-          <span class="secure-label">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <rect x="4" y="10" width="16" height="11" rx="2"></rect>
-              <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
-            </svg>
-            Secure signup
-          </span>
-        </div>
-      </div>
-
-      <p class="verify-copyright">Explore the world, one stay at a time.</p>
-    </div>
-  </div>
-</div>
-
 <style>
+  * {
+    box-sizing: border-box;
+  }
+
   .verify-page {
-    min-height: 85vh;
+    width: 100%;
+    min-height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 35px;
-    padding-bottom: 35px;
-    font-family: "Plus Jakarta Sans", Arial, sans-serif;
+    padding: 20px 12px;
+    background: #fff;
   }
 
   .verify-card {
-    box-sizing: border-box;
     width: 100%;
-    padding: 38px;
-    background: #ffffff;
-    border: 1px solid #eeeeee;
-    border-radius: 20px;
-    box-shadow: 0 10px 32px rgba(35, 30, 40, 0.07);
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 26px 30px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 18px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
+    text-align: center;
   }
 
-  /* Email Icon */
   .verify-icon {
-    position: relative;
-    width: 76px;
-    height: 76px;
-    margin: 0 auto 22px;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
-    background: #fff0f0;
-    color: #fe424d;
-  }
-
-  .verify-check {
-    position: absolute;
-    right: -5px;
-    bottom: -5px;
-    width: 27px;
-    height: 27px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid #fff;
     border-radius: 50%;
-    background: #fe424d;
-    color: #fff;
+    background: rgba(254, 66, 77, 0.1);
+    color: #fe424d;
+    font-size: 30px;
   }
 
-  /* Badge */
   .verify-badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: fit-content;
-    margin: 0 auto 17px;
-    padding: 8px 15px;
+    display: inline-block;
+    margin-bottom: 9px;
+    padding: 5px 12px;
     border-radius: 30px;
-    background: #fff1f1;
+    background: rgba(254, 66, 77, 0.1);
     color: #fe424d;
     font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.7px;
+    font-weight: 700;
+    letter-spacing: 1px;
   }
 
-  .security-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #fe424d;
-  }
-
-  /* Heading */
   .verify-card h1 {
-    margin: 0 0 14px;
-    color: #222222;
-    text-align: center;
-    font-size: clamp(27px, 5vw, 36px);
-    font-weight: 800;
-    letter-spacing: -0.8px;
+    margin: 0 0 8px;
+    color: #222;
+    font-size: 29px;
+    font-weight: 700;
   }
 
   .verify-subtitle {
-    max-width: 470px;
-    margin: 0 auto 30px;
-    color: #777777;
-    text-align: center;
+    max-width: 420px;
+    margin: 0 auto 18px;
+    color: #777;
     font-size: 14px;
-    line-height: 1.8;
+    line-height: 1.6;
   }
 
-  /* Instructions */
   .verify-info {
     display: flex;
     align-items: flex-start;
-    gap: 15px;
-    padding: 20px;
-    border: 1px solid #f0e5e5;
-    border-radius: 14px;
-    background: #fffafa;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding: 15px;
+    border: 1px solid #f1dadd;
+    border-radius: 12px;
+    background: #fff8f8;
+    text-align: left;
   }
 
-  .info-icon {
-    width: 48px;
-    height: 48px;
+  .verify-info-icon {
     flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    background: #fff0f0;
     color: #fe424d;
+    font-size: 22px;
   }
 
   .info-content h5 {
-    margin: 2px 0 7px;
-    color: #292929;
-    font-size: 16px;
-    font-weight: 800;
+    margin: 0 0 5px;
+    color: #333;
+    font-size: 15px;
+    font-weight: 700;
   }
 
   .info-content p {
     margin: 0;
-    color: #777777;
+    color: #777;
     font-size: 13px;
-    line-height: 1.8;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
   }
 
-  /* Tip */
   .verify-tip {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    margin: 19px 0 29px;
-    color: #777777;
-    font-size: 13px;
-    line-height: 1.7;
-  }
-
-  .tip-icon {
-    width: 19px;
-    height: 19px;
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 1px;
-    border: 1px solid #fe424d;
-    border-radius: 50%;
-    color: #fe424d;
+    margin: 0 0 18px;
+    color: #777;
     font-size: 12px;
-    font-weight: 700;
+    line-height: 1.5;
   }
 
-  /* Resend Form */
-  .resend-heading {
-    margin: 0 0 14px;
-    color: #292929;
-    font-size: 15px;
-    font-weight: 750;
+  .verify-tip i {
+    margin-right: 5px;
+    color: #fe424d;
   }
 
-  .verify-input-wrap {
-    position: relative;
-    margin-bottom: 14px;
+  .verify-resend {
+    padding-top: 15px;
+    border-top: 1px solid #eee;
   }
 
-  .verify-input-wrap svg {
-    position: absolute;
-    top: 50%;
-    left: 15px;
-    transform: translateY(-50%);
-    color: #999999;
-    pointer-events: none;
+  .verify-resend p {
+    margin: 0 0 10px;
+    color: #555;
+    font-size: 13px;
   }
 
   .verify-input {
-    box-sizing: border-box;
     width: 100%;
-    min-height: 52px;
-    padding: 12px 15px 12px 44px;
-    border: 1px solid #dedede;
-    border-radius: 10px;
-    background: #ffffff;
-    color: #333333;
-    font-family: inherit;
+    height: 44px;
+    margin-bottom: 10px;
+    padding: 10px 13px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
     font-size: 14px;
-    box-shadow: none;
     transition:
       border-color 0.2s,
       box-shadow 0.2s;
@@ -356,135 +139,192 @@
 
   .verify-input:focus {
     border-color: #fe424d;
-    box-shadow: 0 0 0 3px rgba(254, 66, 77, 0.12);
+    box-shadow: 0 0 0 3px rgba(254, 66, 77, 0.1);
   }
 
-  .verify-input::placeholder {
-    color: #999999;
-  }
-
-  /* Button */
   .verify-button {
     width: 100%;
-    min-height: 52px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 13px 18px;
+    min-height: 44px;
     border: none;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #fe424d, #e83240);
-    color: #ffffff;
-    font-family: inherit;
+    border-radius: 8px;
+    background: #fe424d;
+    color: #fff;
     font-size: 14px;
-    font-weight: 750;
+    font-weight: 600;
     cursor: pointer;
-    transition:
-      transform 0.2s,
-      box-shadow 0.2s;
+    transition: background 0.2s;
   }
 
   .verify-button:hover {
-    color: #ffffff;
-    background: linear-gradient(135deg, #ed3542, #d92735);
-    box-shadow: 0 5px 15px rgba(254, 66, 77, 0.2);
-    transform: translateY(-1px);
+    background: #e93642;
   }
 
-  /* Footer */
   .verify-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 27px;
-    padding-top: 20px;
-    border-top: 1px solid #eeeeee;
+    margin-top: 16px;
   }
 
-  .back-login {
-    color: #333333;
-    font-size: 13px;
-    font-weight: 700;
+  .verify-login {
+    display: inline-block;
+    color: #fe424d;
+    font-size: 14px;
+    font-weight: 600;
     text-decoration: none;
   }
 
-  .back-login:hover {
-    color: #fe424d;
-  }
-
-  .back-login span {
-    margin-right: 5px;
-  }
-
-  .secure-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    color: #999999;
-    font-size: 12px;
+  .verify-login:hover {
+    color: #e93642;
+    text-decoration: underline;
   }
 
   .verify-copyright {
-    margin: 19px 0 0;
-    color: #999999;
-    font-size: 12px;
-    text-align: center;
+    margin-top: 13px;
+    color: #999;
+    font-size: 11px;
   }
 
-  /* Accessibility */
-  .verify-button:focus-visible,
-  .back-login:focus-visible {
-    outline: 3px solid rgba(254, 66, 77, 0.35);
-    outline-offset: 3px;
+  .verify-copyright i {
+    margin-right: 4px;
+    color: #fe424d;
   }
 
-  /* Mobile */
   @media (max-width: 576px) {
     .verify-page {
-      min-height: 80vh;
-      padding: 25px 12px;
+      padding: 12px 10px;
     }
 
     .verify-card {
-      padding: 27px 20px;
-      border-radius: 17px;
+      max-width: 100%;
+      padding: 22px 17px;
+      border-radius: 14px;
     }
 
     .verify-icon {
-      width: 66px;
-      height: 66px;
+      width: 56px;
+      height: 56px;
+      margin-bottom: 10px;
+      font-size: 26px;
+    }
+
+    .verify-badge {
+      margin-bottom: 8px;
+      font-size: 10px;
+    }
+
+    .verify-card h1 {
+      font-size: 25px;
     }
 
     .verify-subtitle {
+      margin-bottom: 15px;
       font-size: 13px;
     }
 
     .verify-info {
-      gap: 12px;
-      padding: 15px;
-    }
-
-    .info-icon {
-      width: 42px;
-      height: 42px;
+      gap: 9px;
+      padding: 12px;
     }
 
     .info-content h5 {
-      font-size: 15px;
+      font-size: 14px;
     }
 
     .info-content p {
       font-size: 12px;
     }
+
+    .verify-tip {
+      margin-bottom: 15px;
+      font-size: 11px;
+    }
+
+    .verify-resend {
+      padding-top: 13px;
+    }
+
+    .verify-footer {
+      margin-top: 14px;
+    }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .verify-button,
-    .verify-input {
-      transition: none;
+  @media (max-width: 360px) {
+    .verify-card {
+      padding: 20px 13px;
+    }
+
+    .verify-card h1 {
+      font-size: 23px;
     }
   }
 </style>
+
+<div class="verify-page">
+  <div class="verify-card">
+    <!-- Email Icon -->
+    <div class="verify-icon">
+      <i class="fa-regular fa-envelope"></i>
+    </div>
+
+    <div class="verify-badge">ACCOUNT SECURITY</div>
+
+    <h1>Verify your email</h1>
+
+    <p class="verify-subtitle">
+      You're almost there! Please verify your email address to activate your
+      account and enjoy a secure experience.
+    </p>
+
+    <!-- Check Inbox Information -->
+    <div class="verify-info">
+      <div class="verify-info-icon">
+        <i class="fa-regular fa-paper-plane"></i>
+      </div>
+
+      <div class="info-content">
+        <h5>Check your inbox</h5>
+        <p>
+          We've sent a verification link to your registered email address. Open
+          the email and click the verification link to activate your account.
+        </p>
+      </div>
+    </div>
+
+    <!-- Spam Folder Tip -->
+    <p class="verify-tip">
+      <i class="fa-solid fa-circle-info"></i>
+      Can't find the email? Please check your spam or promotions folder.
+    </p>
+
+    <!-- Resend Verification Form -->
+    <div class="verify-resend">
+      <p>Didn't receive the verification email?</p>
+
+      <form action="/resend-verification" method="POST">
+        <input
+          type="email"
+          name="email"
+          class="verify-input"
+          placeholder="Enter your email address"
+          required
+        />
+
+        <button type="submit" class="verify-button">
+          <i class="fa-solid fa-paper-plane me-2"></i>
+          Resend Verification Email
+        </button>
+      </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="verify-footer">
+      <a href="/login" class="verify-login">
+        <i class="fa-solid fa-arrow-left me-1"></i>
+        Back to Login
+      </a>
+    </div>
+
+    <div class="verify-copyright">
+      <i class="fa-solid fa-shield-halved"></i>
+      Secure signup · Explore the world, one stay at a time.
+    </div>
+  </div>
+</div>
