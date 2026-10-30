@@ -38,6 +38,7 @@ router.get(
 router.post("/reset-password/:token", wrapAsync(userController.resetPassword));
 
 // LOGIN WITH USERNAME OR EMAIL
+
 router
   .route("/login")
   .get(userController.renderLoginForm)
@@ -56,16 +57,37 @@ router
           email: identifier.toLowerCase(),
         });
 
-        if (user) {
-          req.body.username = user.username;
-        } else {
-          req.body.username = identifier;
-        }
+        req.body.username = user ? user.username : identifier;
       } else {
         req.body.username = identifier;
       }
 
+      // LOGIN DIAGNOSTICS
+      console.log("\n========== LOGIN DEBUG ==========");
+      console.log("[LOGIN] User lookup started");
+
+      const loginUser = await User.findOne({
+        username: req.body.username,
+      });
+
+      console.log("[LOGIN] User found:", Boolean(loginUser));
+      console.log("[LOGIN] Email verified:", loginUser?.isEmailVerified);
+      console.log("[LOGIN] Password received:", Boolean(req.body.password));
+      console.log(
+        "[LOGIN] Password length:",
+        typeof req.body.password === "string"
+          ? req.body.password.length
+          : "Invalid",
+      );
+
+      console.log("[LOGIN] Passport authentication started");
+
       passport.authenticate("local", (err, user, info) => {
+        console.log("[LOGIN] Authentication error:", err?.message || "None");
+        console.log("[LOGIN] User authenticated:", Boolean(user));
+        console.log("[LOGIN] Passport message:", info?.message || "No message");
+        console.log("========== LOGIN DEBUG END ==========\n");
+
         if (err) return next(err);
 
         if (!user) {
@@ -73,23 +95,21 @@ router
             "error",
             info?.message || "Invalid username/email or password.",
           );
-
           return res.redirect("/login");
         }
 
         if (!user.isEmailVerified) {
           req.flash("error", "Please verify your email before logging in.");
-
           return res.redirect("/verify-email");
         }
 
         req.logIn(user, (loginErr) => {
           if (loginErr) return next(loginErr);
-
           return userController.login(req, res, next);
         });
       })(req, res, next);
     } catch (err) {
+      console.error("[LOGIN] Route error:", err.message);
       return next(err);
     }
   });
